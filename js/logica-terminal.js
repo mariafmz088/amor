@@ -2,18 +2,18 @@ const v2AcrosticoPistas = [
     "Pregunta [01/15]: ¿Cómo se llama la estructura de datos donde el primero en entrar es el primero en salir? (Se vale Google).",
     "Pregunta [02/15]: Nombre de mi perrita.",
     "Pregunta [03/15]: Apellido del piloto tricampeón de Red Bull.",
-    "Pregunta [04/15]: ¿Cómo se llama la letra del español que tanto me hizo sufrir para el otro acertijo?",
+    "Pregunta [04/15]: ¿Cuál es letra que te hizo sufrir para el otro acertijo?",
     "Pregunta [05/15]: ¿Qué tipo de pintura dejó tus zapatillas con colorcito?",
     "Pregunta [06/15]: Escultura del primer museo que vimos juntos.",
     "Pregunta [07/15]: ¿Qué alimento de Popeyes vendería mi alma por comer?",
     "Pregunta [08/15]: ¿Cuál fue el primer libro que me regalaste?",
-    "Pregunta [09/15]: ¿En qué fecha te pinté la carita por primera vez? (al menos el mes)",
+    "Pregunta [09/15]: ¿En qué fecha te pinté la carita por primera vez? (no acepto numeros amor, escribe)",
     "Pregunta [10/15]: ¿Qué instrumento mide los terremotos?",
-    "Pregunta [11/15]: ¿A qué soy alérgica aunque debería usarlo casi todos los días?",
-    "Pregunta [12/15]: ¿Qué otro piloto siempre va pegadito a Max en mis conversaciones?.",
-    "Pregunta [13/15]: ¿Qué aplicación usabamos para hablar?",
-    "Pregunta [14/15]: Posición que prefiero?",
-    "Pregunta [15/15]: Quiero saber que se te ocurre cuándo pregunto por mi palabra favorita, intenta"
+    "Pregunta [11/15]: ¿A qué soy alérgica?",
+    "Pregunta [12/15]: ¿Qué otro piloto siempre va pegadito a Max y sabrosea a Max?.",
+    "Pregunta [13/15]: ¿Qué aplicación usabamos para hablar de amigos?",
+    "Pregunta [14/15]: ¿Posición que prefiero?",
+    "Pregunta [15/15]: ¿Palabra favorita? Quiero saber que se te ocurre, intenta"
 ];
 const jokeList = [
     "Compilando al hombre más guapo del universo... Espera tantito. ❤️",
@@ -34,7 +34,7 @@ const jokeList = [
 ];
 const bootLines = [
     "$ updater.exe\n",
-    "Buscando actualizaciones...\n",
+    /*"Buscando actualizaciones...\n",
     "Versión actual detectada:\n",
     'v1.0 "Mi Hombre"\n',
     "\n",
@@ -81,7 +81,7 @@ const bootLines = [
     "\n",
     "Y para no perder la bonita costumbre...\n",
     "La pregunta del millón es...\n",
-    "\n"
+    "\n"*/
 ];
 const exeLines = [
     "Inicializando proyecto...", "",
@@ -221,7 +221,7 @@ function activateTerminalInteractivity() {
         }
 
         // 🛠️ COMANDO supercarga: Ir directo a la pantalla de chistes
-        if (valor === "supercarga") {
+        if (valor === "cargasuperior") {
             const loadScreen = document.getElementById("loading-screen");
             const jokeScreen = document.getElementById("joke-loading-screen");
 
@@ -322,7 +322,7 @@ function spawnFinalPasswordBox() {
         const errorTxt = document.getElementById("popup-final-error-txt");
         
         // 🌟 OPTIMIZADO: Simplificamos la validación usando .includes() en una sola línea corta
-        if (["tequeñosdequeso", "tequeños de queso"].includes(claveIngresada)) {
+        if (["dientesdelata", "dientes de lata"].includes(claveIngresada)) {
             msgBox.remove(); 
             
             const bootTextDiv = document.getElementById("boot-text");
@@ -344,7 +344,7 @@ function spawnFinalPasswordBox() {
                 if (typeof startJokeLoading === "function") startJokeLoading();
             }
         } else {
-            if (errorTxt) errorTxt.innerText = "❌ Clave incorrecta. Revisa las iniciales de tus respuestas.";
+            if (errorTxt) errorTxt.innerText = "❌ Clave incorrecta. Ruega a tu patrona.";
         }
     };
 }
