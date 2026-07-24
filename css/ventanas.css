@@ -1,0 +1,209 @@
+/* ==========================================================================
+   3. ARQUITECTURA DE VENTANAS Y BARRAS
+   ========================================================================== */
+
+.window {
+    position: absolute;
+    top: 120px;
+    left: calc(50% - 250px);
+    width: 500px;
+    background-color: rgba(30, 30, 30, 0.4) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid #444;
+    border-radius: 6px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    z-index: 20;
+    resize: both;
+    overflow: auto;
+    min-width: 340px;
+    min-height: 220px;
+    max-width: 75vw;
+    max-height: 75vh;
+}
+
+.window-body {
+    padding: 20px;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-y: auto;
+    height: calc(100% - 38px);
+
+    /* 🖼️ INYECCIÓN GLOBAL DE LA IMAGEN F2.JPEG EN TODAS LAS VENTANAS */
+    background-image: linear-gradient(rgba(12, 12, 12, 0.85), rgba(12, 12, 12, 0.85)), url('../assets/img/F2.jpeg') !important; 
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    position: relative;
+    z-index: 1;
+}
+
+
+.window-header {
+    background-color: rgba(15, 10, 25, 0.75) !important; /* Morado oscuro con transparencia */
+    backdrop-filter: blur(8px) !important; /* Efecto esmerilado */
+    -webkit-backdrop-filter: blur(8px) !important;
+    height: 38px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    user-select: none;
+    border-bottom: 1px solid rgba(214, 77, 255, 0.3) !important;
+}
+
+.dot-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 10;
+}
+
+.draggable-header {
+    cursor: move;
+}
+
+.system-bar {
+ background-color: rgba(10, 5, 20, 0.5) !important; /* Fondo morado ultra oscuro y translúcido */
+ backdrop-filter: blur(8px) !important; /* Efecto de cristal esmerilado para que resalten los textos */
+ -webkit-backdrop-filter: blur(8px) !important;
+ padding: 6px 20px;
+ display: flex;
+ justify-content: space-between;
+ font-size: 13px;
+ border-bottom: 2px solid #5a189a !important; /* Línea morada elegante abajo */
+ box-shadow: 0 5px 15px rgba(90, 24, 154, 0.4) !important; /* Resplandor neón hacia abajo */
+ height: 38px;
+ align-items: center;
+}
+
+.system-title {
+    color: var(--accent-purple);
+    font-weight: bold;
+}
+
+.system-clock {
+ color: #318580 !important; 
+ font-weight: bold;
+ text-shadow: 0 0 8px rgba(49, 133, 128, 0.5); 
+}
+/* ==========================================================================
+   4. BOTONES, ACCIONES Y DETALLES DE LAS VENTANAS
+   ========================================================================== */
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dot.red {
+    background-color: var(--red-dot);
+}
+
+.dot.yellow {
+    background-color: var(--yellow-dot);
+}
+
+.dot.green {
+    background-color: var(--green-dot);
+}
+
+.window-title {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    color: #9cdcfe;
+    pointer-events: none;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.close-btn-x {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    cursor: pointer;
+    z-index: 10;
+    color: #888;
+}
+
+.close-btn-x:hover {
+    color: #fff;
+}
+
+button {
+    background-color: #3a3d3d;
+    color: var(--text-main);
+    border: 1px solid #555;
+    padding: 8px 16px;
+    font-family: inherit;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--accent-purple);
+    color: #fff;
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 8px var(--neon-pink);
+}
+
+/* ==========================================================================
+   8. ESTILOS DE TEXTOS ESPECÍFICOS (CARTAS, LOGS, CÓDIGO)
+   ========================================================================== */
+
+.letter-theme {
+    background-color: #282c34;
+    color: #abb2bf;
+    white-space: pre-wrap;
+}
+
+.code-theme {
+    background-color: #1e1e1e;
+    color: #9cdcfe;
+}
+
+.j-key {
+    color: #9cdcfe;
+}
+
+.j-val {
+    color: #b5cea8;
+}
+
+.log-theme {
+    background-color: #151515;
+    font-size: 13px;
+}
+
+.log-fix {
+    color: #6a9955;
+    font-weight: bold;
+}
+
+.log-warn {
+    color: #ece5ba;
+    font-weight: bold;
+}
+
+.log-info {
+    color: #4fc1ff;
+    font-weight: bold;
+}
+
+.hint-text {
+    color: var(--accent-green);
+    font-size: 12px;
+}

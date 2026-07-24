@@ -1,0 +1,239 @@
+/* ==========================================================================
+   2. EL ESCRITORIO PRINCIPAL Y EL DOCK
+   ========================================================================== */
+
+#desktop-screen {
+    justify-content: flex-start;
+    align-items: stretch;
+    background-color: #0c0814; /* Una base oscura linda por si la foto tarda en cargar */
+    
+    /* 🖼️ INYECTAMOS TU IMAGEN F3 (Asegúrate de cambiar .jpg por .png o .jpeg si tu archivo es diferente) */
+    background-image: url('../assets/img/f3.jpeg'); 
+    
+    /* Reglas de oro para que la foto se adapte al monitor sin estirarse feo */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+.system-dock-right {
+    position: fixed;
+    right: 0; 
+    top: 38px;
+    width: 100px; 
+    height: calc(100vh - 38px);
+    background-color: #000000;
+    border-left: 2px solid #5a189a !important; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    padding-top: 15px; 
+    gap: 12px; 
+    z-index: 100;
+    backdrop-filter: blur(5px);
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.dock-title {
+    font-size: 11px;
+    font-weight: bold;
+    color: #9d4edd; 
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.dock-item {
+    width: 85px; 
+    padding: 8px 4px;
+    /* ✨ CAMBIADO: Fondo con un toque morado traslúcido */
+    background-color: rgba(157, 78, 221, 0.05); 
+    /* ✨ CAMBIADO: Borde morado oscuro en vez de gris */
+    border: 1px solid #7b2cbf; 
+    border-radius: 6px;
+    font-size: 11px; 
+    text-align: center; 
+    cursor: pointer;
+    /* ✨ CAMBIADO: Letras moradas claras */
+    color: #c77dff; 
+    transition: all 0.2s ease;
+}
+
+.dock-item:hover {
+    /* ✨ CAMBIADO: Brillo morado neón al pasar el mouse */
+    background-color: rgba(157, 78, 221, 0.25);
+    border-color: #e0aaff;
+    color: #fff;
+    box-shadow: 0 0 8px rgba(224, 170, 255, 0.5);
+}
+
+.dock-item.running {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    background-color: rgba(79, 193, 255, 0.08);
+    box-shadow: 0 0 4px rgba(79, 193, 255, 0.2);
+}
+
+.dock-item.minimized {
+    border-color: var(--accent-yellow);
+    color: var(--accent-yellow);
+    background-color: rgba(255, 189, 46, 0.08);
+}
+
+.file-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 110px);
+    grid-auto-rows: 110px;
+    gap: 20px;
+    justify-content: flex-start;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    z-index: 5;
+}
+
+.desktop-content {
+    flex: 1;
+    position: relative !important;
+    padding: 20px;
+    width: calc(100% - 100px);
+}
+
+.file-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 6px;
+    transition: background 0.2s;
+    text-align: center;
+}
+
+.file-icon:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.icon-visual {
+    width: 65px !important;       /* Fuerza el ancho exacto en tu cuadrícula */
+    height: 65px !important;      /* Fuerza el alto exacto en tu cuadrícula */
+    max-width: 100% !important;   /* Evita que se desborde del contenedor */
+    object-fit: contain !important; /* Mantiene la proporción perfecta sin estirarse */
+    display: block;               /* Lo alinea correctamente arriba del texto */
+    margin: 0 auto 8px auto;      /* Lo centra y le da espacio al texto inferior */
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
+.icon-label {
+    font-size: 12px;
+    word-break: break-all;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+/* ==========================================================================
+   7. WIDGETS DE ESCRITORIO, MARCADORES Y RECTIFICACIONES
+   ========================================================================== */
+
+/* ==========================================================================
+   DISEÑO PREMIUM DELICADO: FUENTE FINA Y TAMAÑO DE ESCRITORIO
+   ========================================================================== */
+
+/* Ajustamos el tamaño del contenedor al centro */
+.desktop-wallpaper-widget {
+    position: fixed !important;
+    top: 52% !important; /* Lo bajamos un pelín para que no tape los iconos de arriba */
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    text-align: left !important;
+    width: 650px !important; /* Más compacto para que se vea delicado */
+    max-width: 85% !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    background: transparent !important;
+}
+
+/* 📠 EL CASCARÓN: "Main( ) {" y la llave de cierre "}" (Fino y Máquina de escribir) */
+.desktop-wallpaper-widget h1 {
+    font-family: 'Consolas', 'Courier New', monospace !important;
+    font-style: normal !important;
+    font-size: 48px !important; /* 🌟 ¡Lo bajamos a un tamaño elegante de fondo! */
+    margin: 5px 0 !important;
+    
+    /* 🛑 AQUÍ EL TRUCO: Forzamos que la letra sea ultra delgada y fina */
+    font-weight: 300 !important; 
+    letter-spacing: 1px !important;
+    line-height: 1.1 !important;
+    
+    /* Color fucsia apagado con un brillo muy suave que no sature */
+    color: #b5428a !important; 
+    text-shadow: 0 0 6px rgba(181, 66, 138, 0.5) !important;
+}
+
+/* 🔮 LA LÍNEA IMPRESA: 'return "Mi operador favorito";' (Cursiva Fluorescente Delicada) */
+.desktop-wallpaper-widget p {
+    font-family: 'Consolas', 'Courier New', monospace !important;
+    font-style: italic !important; /* Cursiva elegante */
+    margin: 0 !important;
+    padding-left: 55px !important; /* Ajustamos el espacio al nuevo tamaño */
+    
+    /* 🛑 Forzamos grosor fino para que el morado se vea estilizado y estético */
+    font-weight: 300 !important; 
+    font-size: 34px !important; /* 🌟 Tamaño mucho más sutil y cómodo para la vista */
+    
+    /* Morado neón fluorescente mágico */
+    color: #d64dff !important; 
+    
+    /* Brillo líquido expansivo y sutil */
+    text-shadow: 
+        0 0 4px #d64dff, 
+        0 0 12px #9900cc, 
+        0 0 25px rgba(153, 0, 204, 0.4) !important;
+}
+
+.score-board {
+ position: absolute;
+ top: 25px;
+ left: 270px;
+ background-color: rgba(15, 10, 25, 0.6) !important; /* Fondo de cristal oscuro */
+ border: 1px solid rgba(74, 40, 112, 0.4) !important;
+ border-left: 4px solid #4a2870 !important; /* Borde izquierdo morado digital */
+ padding: 10px 15px;
+ border-radius: 4px;
+ font-family: 'Consolas', monospace;
+ z-index: 5;
+ backdrop-filter: blur(5px);
+ box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 10px rgba(74, 40, 112, 0.2);
+}
+
+.score-value {
+ font-size: 20px;
+ font-weight: bold;
+ color: #318580 !important; /* El valor de los puntos ahora brilla en cian */
+ text-shadow: 0 0 6px rgba(49, 133, 128, 0.4);
+}
+
+.score-title {
+    font-size: 10px;
+    font-weight: bold;
+    color: #888;
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+}
+
+
+
+.score-goal {
+    font-size: 11px;
+    color: var(--accent-green);
+    margin-top: 3px;
+    font-style: italic;
+}
+
+
+/* 1. LA BARRA SUPERIOR (Agrega este bloque para pintarla de morado) */
+.top-bar, #top-bar, [class*="topbar"], [class*="kernel-bar"] {
+    background-color: rgba(30, 10, 45, 0.85) !important; /* Morado muy oscuro */
+    border-bottom: 2px solid #b5428a !important;        /* Línea fucsia/morada neón */
+    box-shadow: 0 2px 10px rgba(181, 66, 138, 0.3) !important;
+}

@@ -1,0 +1,257 @@
+/* ==========================================================================
+   ALERTAS ESPECÍFICAS Y SISTEMA DINÁMICO DE LOGROS
+   ========================================================================== */
+
+/* Estilos específicos para la ventana de advertencia del viejito */
+#win-viejito {
+    background: rgba(15, 10, 25, 0.75) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 2px solid #ff79c6 !important;
+    box-shadow: 0 0 30px rgba(255, 121, 198, 0.3) !important;
+    border-radius: 12px !important;
+}
+#win-viejito .warning-title {
+    color: #ff5555 !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
+}
+#win-viejito .warning-desc {
+    color: #f8f8f2 !important;
+    font-size: 13.5px !important;
+}
+
+#win-viejito .window-body {
+    background-color: #252526;
+    padding: 20px;
+}
+
+#win-viejito .btn-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+#win-viejito .btn-green {
+    background-color: #6a9955;
+}
+
+/* Estilos específicos para la Alerta de Seguridad de la Papelera */
+#win-alerta-papelera {
+    width: 380px;
+    z-index: 999999;
+    border-color: var(--accent-orange);
+    box-shadow: 0 0 20px rgba(206, 145, 120, 0.4);
+}
+
+#win-alerta-papelera .window-body {
+    background-color: #252526;
+    padding: 25px;
+}
+
+#win-alerta-papelera p.alert-title {
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: var(--accent-orange);
+}
+
+#win-alerta-papelera p.alert-desc {
+    font-size: 13px;
+    color: #fff;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+#win-alerta-papelera .btn-alert-close {
+    background-color: #3a3d3d;
+    color: var(--text-main);
+    width: 100%;
+}
+
+/* Estilos para el interior de la Papelera de Reciclaje */
+#win-papelera .window-body {
+    background-color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 38px);
+}
+
+#body-papelera {
+    font-size: 13px;
+    line-height: 1.8;
+    height: 100%;
+}
+
+.trash-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    border-bottom: 1px dashed #333;
+    color: #777;
+    text-decoration: line-through;
+}
+
+.trash-size {
+    color: var(--accent-green);
+    font-size: 11px;
+    text-decoration: none !important;
+    display: inline-block;
+    margin-left: auto;
+}
+
+#btn-vaciar-papelera {
+    background-color: #a31515;
+    color: #fff;
+    border-color: #ff5f56;
+    width: 100%;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* Estilos definitivos para la ventana dinámica de logros y adivinanzas */
+#win-logro-puntos {
+    width: 420px;
+}
+
+#win-logro-puntos .window-body {
+    padding: 20px;
+}
+
+.special-window {
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+}
+
+.golden-theme h2 {
+    color: #ffd700;
+    margin-bottom: 10px;
+}
+
+.highlight-text {
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.points {
+    color: #27c93f;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+/* ==========================================================================
+   REDISEÑO ESTÉTICO DE LA PANTALLA DE REPARACIÓN (SOLO CSS)
+   ========================================================================== */
+
+/* Centra el contenedor y le da un fondo inmersivo al activarse */
+#punishment-screen:not(.hidden) {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999 !important;
+    background-color: rgba(10, 5, 15, 0.75) !important; /* Capa oscura translúcida */
+}
+
+/* Transforma la caja en una ventana de comandos impecable */
+#punishment-screen .terminal-window {
+    width: 550px !important; /* Más ancha para que no se vea amontonada */
+    max-width: 92%;
+    /* Inyectamos tu fondo de imagen F2.jpeg con su filtro protector oscuro */
+    background-image: linear-gradient(rgba(18, 12, 24, 0.93), rgba(18, 12, 24, 0.93)), url('../assets/img/F2.jpeg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border: 2px solid #ff5f56 !important; /* Borde rojo neón de advertencia */
+    box-shadow: 0 0 35px rgba(255, 95, 86, 0.4) !important;
+    border-radius: 10px;
+    padding: 25px 30px !important;
+    font-family: 'Consolas', monospace;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Darle formato de reporte técnico al bloque de sermón */
+#punishment-screen p,
+#punishment-screen .punish-desc {
+    color: #e5e5e5 !important;
+    font-size: 13.5px !important;
+    line-height: 1.6 !important;
+    text-align: left !important;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px dashed rgba(255, 95, 86, 0.25);
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Título superior de la Alerta */
+#punishment-screen .punish-alert {
+    color: #ff5f56 !important;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 8px rgba(255, 95, 86, 0.4);
+}
+
+/* ❤️ AGRANDAR EL CORAZÓN ROTO Y HACERLO PALPITAR */
+#broken-heart-clicker,
+#punishment-screen div[onclick] {
+    font-size: 65px !important; /* ¡Mucho más grande y visible! */
+    cursor: pointer;
+    display: inline-block;
+    margin: 15px 0;
+    user-select: none;
+    filter: drop-shadow(0 0 10px rgba(255, 95, 86, 0.5));
+    animation: latidoEfecto 1.3s infinite ease-in-out;
+    transition: transform 0.1s ease;
+}
+
+#broken-heart-clicker:active,
+#punishment-screen div[onclick]:active {
+    transform: scale(0.88) !important;
+}
+
+/* Animación de pulso automático para el corazón */
+@keyframes latidoEfecto {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.06); filter: drop-shadow(0 0 18px rgba(255, 95, 86, 0.7)); }
+    100% { transform: scale(1); }
+}
+
+/* El texto de los clics y la barra */
+#punish-clicks-text {
+    font-size: 13px;
+    color: #ffbd2e;
+    font-weight: bold;
+    margin-top: 5px;
+    letter-spacing: 0.5px;
+}
+
+/* 💚 DISEÑO PREMIUM PARA EL BOTÓN VERDE "VOLVER A INTENTARLO" */
+#punishment-screen button {
+    background-color: #6a9955 !important;
+    color: #ffffff !important;
+    border: 1px solid #8cc379 !important;
+    width: 100%;
+    padding: 12px !important;
+    font-family: 'Consolas', monospace;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-top: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#punishment-screen button:hover {
+    background-color: #5cb85c !important;
+    box-shadow: 0 0 15px rgba(92, 184, 92, 0.5);
+}

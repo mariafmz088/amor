@@ -1,0 +1,530 @@
+/* ==========================================================================
+   5. COMPONENTES DE CARGAS, CHISTES Y TERMINALES
+   ========================================================================== */
+
+.terminal-window {
+    width: 90%;
+    max-width: 600px;
+    background-color: var(--bg-window);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    border: 1px solid #3c3c3c;
+    overflow: hidden;
+}
+
+.terminal-body-bg {
+    background-color: #0c0c0c;
+    color: #d4d4d4;
+    min-height: 220px;
+    padding: 20px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    line-height: 1.6;
+}
+
+.terminal-body {
+    background-color: #0c0c0c;
+    color: #00ff00;
+    font-family: monospace;
+    min-height: 220px;
+}
+
+.joke-box {
+    background-color: #151515;
+    border: 1px solid #444;
+    padding: 20px;
+    border-radius: 6px;
+    min-height: 90px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    color: var(--accent-orange);
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.progress-container {
+    background-color: #333;
+    width: 100%; 
+    height: 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #555;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--accent-purple), var(--neon-pink));
+    width: 0%;
+    height: 100%;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px var(--neon-pink);
+}
+
+.spinner-love {
+    font-weight: bold;
+    color: var(--accent-blue);
+    margin-bottom: 10px; 
+}
+
+.terminal-window.mini-box {
+    padding: 30px;
+    max-width: 500px;
+}
+
+/* ==========================================================================
+   9. INTERFAZ DE LA TERMINAL DE COLAPSO (MATRIX CHAOS)
+   ========================================================================== */
+
+/* ==========================================================================
+   DASHBOARD DE UPTIME TRACKER (TARJETAS INTEGRADAS)
+   ========================================================================== */
+
+/* Reseteo de la vieja caja contenedora a invisible */
+.timer-box {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: 100%;
+    height: auto;
+    margin: 15px 0;
+    padding: 0;
+}
+
+/* Contenedor principal del dashboard */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    font-family: 'Consolas', monospace;
+    box-sizing: border-box;
+}
+
+/* La fila que acomoda las 4 tarjetas juntas en horizontal */
+.cards-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    width: 100%;
+}
+
+/* Base general de cada tarjeta translúcida como la terminal */
+.time-card {
+    background: rgba(10, 5, 15, 0.6) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    border-radius: 8px;
+    padding: 12px 6px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 125px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease;
+}
+
+.time-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Textos internos de tus tarjetitas */
+.card-header { 
+    font-size: 11px; 
+    font-weight: bold; 
+    margin-bottom: 8px; 
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+.card-value { 
+    font-size: 32px; 
+    font-weight: bold; 
+    line-height: 1; 
+}
+.card-unit { 
+    font-size: 11px; 
+    margin-top: 4px; 
+    opacity: 0.6; 
+}
+
+/* Sub-tarjeta para los segundos (dentro de la tarjeta de minutos) */
+.card-sub-header { 
+    font-size: 10px; 
+    font-weight: bold; 
+    margin-top: 10px; 
+    border-top: 1px dashed rgba(255, 255, 255, 0.15); 
+    width: 100%; 
+    padding-top: 6px; 
+    opacity: 0.7; 
+}
+.card-sub-value { 
+    font-size: 16px; 
+    font-weight: bold; 
+    line-height: 1.1;
+}
+.card-sub-unit { 
+    font-size: 10px; 
+    opacity: 0.5; 
+}
+
+/* Barra inferior integrada con tu tema */
+.exact-time-bar {
+    border: 1px solid rgba(197, 134, 192, 0.3);
+    background: rgba(15, 10, 20, 0.65) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: left;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+.exact-title {
+    color: var(--accent-purple);
+    font-size: 11px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+.exact-text {
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: bold;
+}
+
+
+.matrix-red-alert {
+    color: #ff5f56 !important;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(255, 95, 86, 0.6);
+}
+
+.matrix-yellow-warn {
+    color: #ffbd2e !important;
+    font-style: italic;
+}
+
+#fullscreen-matrix-glitch {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: #050505;
+    z-index: 99999998;
+    box-sizing: border-box;
+    padding: 30px !important;
+    overflow-y: auto !important;
+}
+
+#fullscreen-matrix-glitch:not(.hidden) {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+#matrix-falling-chaos {
+    width: 90% !important;
+    max-width: 850px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    text-align: left !important;
+    font-family: 'Consolas', monospace !important;
+    box-sizing: border-box;
+}
+
+#glitch-task-input {
+    background: transparent !important;
+    border: none !important;
+    color: #00ff00 !important;
+    font-family: 'Consolas', monospace !important;
+    font-size: 14px !important;
+    outline: none !important;
+    width: 350px;
+    caret-color: var(--neon-pink);
+}
+
+/* Pantalla de reinicio del servidor de 35 segundos */
+#server-reboot-screen {
+    background-color: #0a0a12;
+    color: #4fc1ff;
+    font-family: monospace;
+    z-index: 99999999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#server-reboot-screen .terminal-window {
+    padding: 40px;
+    max-width: 480px;
+    border-color: #4fc1ff;
+    box-shadow: 0 0 25px rgba(79, 193, 255, 0.35);
+}
+
+#server-reboot-screen .reboot-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #4fc1ff;
+}
+
+#server-reboot-screen .reboot-desc {
+    font-size: 14px;
+    color: #abb2bf;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+#server-reboot-screen .progress-container {
+    background-color: #1a1a2e;
+    border-color: #4fc1ff;
+    margin-bottom: 10px;
+}
+
+#reboot-progress-bar {
+    background: linear-gradient(90deg, #4fc1ff, var(--accent-purple));
+    width: 0%;
+}
+
+#reboot-status-text {
+    font-size: 12px;
+    color: #abb2bf;
+}
+
+/* ==========================================================================
+   10. PANTALLAS DE CARGA, SCROLLBARS Y LIENZO
+   ========================================================================== */
+
+#loading-screen {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 800px !important;
+    height: 450px !important;
+    /* CAMBIO MÁGICO: Cambiamos el fondo plano por tu foto */
+    background-image: url('../assets/img/F2.jpeg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border: 1px solid #333 !important;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.85) !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    z-index: 99999995 !important;
+    box-sizing: border-box !important;
+    display: block !important;
+}
+
+
+#loading-screen .window-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+#loading-screen .window-body::-webkit-scrollbar-track {
+    background: #0c0c0c;
+}
+
+#loading-screen .window-body::-webkit-scrollbar-thumb {
+    background: #252525;
+    border-radius: 4px;
+}
+
+/* 📺 1. El fondo de la pantalla de carga */
+#joke-loading-screen {
+    background-color: #07050f !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 🪟 2. La cajita gris ahora es cristal morado translúcido */
+#joke-loading-screen .terminal-window.mini-box {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important; /* Centrado matemático perfecto */
+    width: 480px !important;
+    max-width: 92%;
+    background: rgba(22, 14, 36, 0.7) !important; /* Cristal morado translúcido */
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 121, 198, 0.3) !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 121, 198, 0.15) !important;
+    border-radius: 12px !important;
+    padding: 25px 30px !important;
+    box-sizing: border-box !important;
+}
+
+/* 📊 3. El contenedor de la barra de progreso */
+#joke-loading-screen .progress-container {
+    background: #120c1f !important;
+    border: 1px solid rgba(255, 121, 198, 0.2) !important;
+    border-radius: 10px !important;
+    height: 14px !important;
+    overflow: hidden !important;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.7) !important;
+    margin-bottom: 15px !important;
+}
+
+/* 🔥 4. LA BARRA INTERNA: ¡Degradado morado y rosa neón! */
+#progress-bar {
+    background: linear-gradient(90deg, #9b51e0, #ff79c6) !important;
+    height: 100% !important;
+    border-radius: 10px !important;
+    box-shadow: 0 0 10px #ff79c6, 0 0 4px #9b51e0 !important;
+    transition: width 0.3s ease !important;
+}
+
+/* 💬 5. Los textos de "Loading Systems..." y los chistes */
+#joke-loading-screen .spinner-love {
+    color: #00ff66 !important;
+    font-weight: bold !important;
+    text-shadow: 0 0 8px rgba(0, 255, 102, 0.5) !important;
+}
+#joke-loading-screen .joke-box {
+    background: rgba(5, 3, 10, 0.5) !important;
+    border: 1px dashed rgba(255, 121, 198, 0.25) !important;
+    color: #f8f8f2 !important;
+}
+#countdown-text {
+    color: #ffbd2e !important;
+    font-weight: bold !important;
+}
+
+/* ⏩ 6. EL BOTÓN QUE ABRE EL VIEJO ABURRIDO (Estilizado) */
+#btn-skip-loading {
+    background: transparent !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    font-family: 'Consolas', monospace !important;
+    font-size: 11px !important;
+    padding: 8px 16px !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+#btn-skip-loading:hover {
+    background: rgba(255, 121, 198, 0.1) !important;
+    color: #ff79c6 !important;
+    border-color: #ff79c6 !important;
+}
+
+
+
+/* ==========================================================================
+   13. COMPONENTES INTERNOS DE LA TERMINAL DE CARGA
+   ========================================================================== */
+
+.custom-header {
+    background: #1a1a1a;
+    padding: 10px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.custom-header .dot-group {
+    display: flex;
+    gap: 6px;
+}
+
+.custom-header .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.custom-header .dot.red { background: #ff5f56; }
+.custom-header .dot.yellow { background: #ffbd2e; }
+.custom-header .dot.green { background: #27c93f; }
+
+.custom-header .window-title {
+    color: #abb2bf;
+    font-family: monospace;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: auto;
+    margin-left: 15px;
+}
+
+.terminal-split-body {
+    padding: 15px;
+    height: calc(100% - 35px);
+    display: flex;
+    gap: 15px;
+    box-sizing: border-box;
+    background-color: rgba(12, 12, 12, 0.75) !important; 
+    backdrop-filter: blur(3px); 
+}
+
+
+.terminal-active-body {
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#boot-text {
+    text-align: left;
+    font-family: 'Consolas', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #fff;
+}
+
+#terminal-input-zone {
+    text-align: left;
+    margin-top: auto;
+    width: 100%;
+}
+
+.terminal-input-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    width: 100%;
+    text-align: left;
+}
+
+.terminal-input-row input {
+    background: transparent;
+    border: none;
+    color: #00ff00;
+    font-family: 'Consolas', monospace;
+    font-size: 14px;
+    outline: none;
+    flex-grow: 1;
+    text-align: left;
+}
+
+#v2-bitacora-respuestas {
+    width: 220px;
+    height: 100%;
+    border-left: 1px dashed #333;
+    padding-left: 15px;
+    overflow-y: auto;
+    font-family: 'Consolas', monospace;
+    font-size: 11px;
+    color: #888;
+    text-align: left;
+    box-sizing: border-box;
+}

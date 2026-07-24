@@ -1,0 +1,62 @@
+/* ==========================================================================
+   1. CONFIGURACIÓN BASE, RESET Y CLASES GLOBALES (AMOR - MORADO FINAL)
+   ========================================================================== */
+
+:root {
+    --bg-dark: #1e1e1e;
+    --bg-window: #252526;
+    --bg-header: #323233;
+    --text-main: #d4d4d4;
+    --accent-purple: #c586c0;
+    --accent-blue: #4fc1ff;
+    --accent-green: #6a9955;
+    --accent-orange: #ce9178;
+    --accent-yellow: #dcdcaa;
+    --red-dot: #ff5f56;
+    --yellow-dot: #ffbd2e;
+    --green-dot: #27c93f;
+    --neon-pink: #ff79c6;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url('../assets/img/F2.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--text-main);
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.screen {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    z-index: 10;
+}
