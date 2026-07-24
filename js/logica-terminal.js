@@ -34,7 +34,7 @@ const jokeList = [
 ];
 const bootLines = [
     "$ updater.exe\n",
-    /*"Buscando actualizaciones...\n",
+    "Buscando actualizaciones...\n",
     "Versión actual detectada:\n",
     'v1.0 "Mi Hombre"\n',
     "\n",
@@ -81,7 +81,7 @@ const bootLines = [
     "\n",
     "Y para no perder la bonita costumbre...\n",
     "La pregunta del millón es...\n",
-    "\n"*/
+    "\n"
 ];
 const exeLines = [
     "Inicializando proyecto...", "",
