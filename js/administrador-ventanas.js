@@ -139,7 +139,7 @@ function toggleMinimize(id, textLoaderFunctionName) {
 function readCarta() {
     if (cartaTimeout) clearTimeout(cartaTimeout);
     const body = document.getElementById("body-carta"); if(!body) return; body.innerHTML = "";
-    const textoCarta = "Hola otra vez, Main. ❤️ \n\nSi encontraste esta actualización es porque, sorprendentemente, el proyecto sigue vivo y seguimos sacando versiones nuevas.\n\nEsta ya no viene solo con chistes o tonterías escondidas. Viene con un poquito más de nosotros.\n\n En estos meses aprendí que querer a alguien también significa aprender su idioma. A veces tú hablas desde la preocupación, yo desde el miedo, y terminamos creyendo que hablamos de cosas distintas, cuando en realidad los dos solo queremos lo mismo: cuidar al otro.\n\nTodavía me falta muchísimo por aprender. Habrá días en los que me cueste explicar lo que siento, otros en los que haga un drama enorme por cosas chiquitas y otros en los que necesite un abrazo antes que cualquier solución. \n\nPero también prometo seguir intentándolo. Gracias por seguir aquí, por tenerme paciencia incluso cuando mi cabecita decide complicar todo un poquito más de la cuenta. Y gracias por hacerme sentir que este proyecto vale la pena todos los días. Te amo muchísimo. \n\n Ahora sí...\n\n Continúe ejecutando el programa, operador precioso. ❤️ ";
+    const textoCarta = "Hola otra vez, Main. ❤️ \n\nSi encontraste esta actualización es porque, sorprendentemente, el proyecto sigue vivo y seguimos sacando versiones nuevas (me fragmenté :3).\n\nEsta ya no viene solo con chistes malos o tonterías escondidas. Viene con un poquito más de nuestra (mi) enferma mentecita.\n\n En estos meses aprendí que querer a alguien también significa aprender su idioma y chamare amor, eso de hablar taka taka contigo, está complicado. A veces ni nos entendemos y terminamos creyendo que hablamos de cosas distintas, cuando en realidad los dos solo queremos lo mismo: cuidar al otro y papitas con ají de Popeyes.\n\n Poniéndonos serios. \n\n Todavía me falta muchísimo por aprender. Habrá días en los que me cueste explicar lo que siento, otros en los que haga un drama enorme por cosas muy bobas y otros en los que necesite un abrazo antes que cualquier solución razonable y madura. \n\nPrometo seguir intentándolo, aunque termines con canas verdes en el proceso. Gracias por seguir aquí, por tenerme paciencia (incluso cuando mi cabecita decide complicar todo un poquito más de la cuenta). Y gracias por hacerme sentir que este programita vale la pena. Te amo muchísimo. \n\n Ahora sí...\n\n Continúe ejecutando el programa, operador precioso. ❤️ ";
     let idx = 0;
     function type() { if(idx < textoCarta.length) { let char = textoCarta.charAt(idx); body.innerHTML += char === "\n" ? "<br>" : char; idx++; cartaTimeout = setTimeout(type, 25); } }
     type();
@@ -193,6 +193,7 @@ const textoJson = `{
   "calma_mi_ansiedad": true,
   "celebra_mis_logros": true,
   "es_mi_hogar": true,
+  "me_hará_cuatro_hijos": true,
   "proyecto_de_vida_juntos": true,
   "lo_amo": "Infinity"
 }`;
@@ -416,7 +417,11 @@ function showRestorationWarningWindow() {
             </div>
             <p style="font-size: 15px; color: #fff; font-weight: bold; margin-bottom: 10px; text-align: left;">¡Bienvenido de nuevo, Main! ❤️</p>
             <p style="font-size: 13px; color: #abb2bf; line-height: 1.6; margin-bottom: 20px; text-align: left;">
-                Aviso: El entorno ha sido estabilizado de forma segura. Recuerda que lo mejor es no intentar restaurar o hurgar en estos archivos viejos porque solo sirve para revivir momentos tensos, dramas innecesarios y caer en los mismos errores. Esos archivos ya cumplieron su propósito y están mejor en la papelera. El sistema funciona muchísimo mejor cuándo se escriben lineas nuevas y si se agregan nuevos archivos a la carpeta de recuerdos.
+            [SYSTEM NOTICE]: Los servidores están corriendo sin errores. 
+
+            Se recomienda no realizar consultas a la base de datos antigua ni intentar restaurar respaldos obsoletos. Hacer 'rollback' a esos estados anteriores solo reactivará bugs del pasado, generará conflictos de fusión (merge conflicts) y romperá la estabilidad actual del sistema. 
+
+            Esos registros ya cumplieron su ciclo de vida y fueron enviados permanentemente al /dev/null. El rendimiento mejora exponencialmente cuando nos enfocamos en escribir nuevas líneas de código y en hacer 'push' de nuevos archivos a nuestro repositorio actual.
             </p>
             <button onclick="closeWindow('win-alerta-papelera')" style="background-color: #3a3d3d; color: var(--text-main); border-color: #555; width: 100%; font-weight: bold;">Aceptar y Continuar 💜</button>
         `;

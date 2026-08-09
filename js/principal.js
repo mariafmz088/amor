@@ -83,7 +83,7 @@ function bindInlineTerminalInput() {
                     // 🌟 OPTIMIZADO: Tu HTML en vivo ahora se lee en vertical de forma súper elegante en el editor
                     chaosBox.innerHTML += `
                         <span style="color:var(--accent-green);">✔ [PROCESO COMPLETADO]: Procesos de indecisión resueltos con éxito.</span><br><br>
-                        <span style="color:#ffbd2e; font-weight:bold;">👉 TAREA 3/3: Ingrese la declaración de sumisión absoluta obligatoria (<span style="color:var(--neon-pink);">mimujermanda</span>) y presione Enter:</span><br>
+                        <span style="color:#ffbd2e; font-weight:bold;">👉 TAREA 3/3: Ingrese la declaración de sumisión absoluta obligatoria (<span style="color:var(--neon-pink);">soyunlobodomesticado</span>) y presione Enter:</span><br>
                         <div id="inline-terminal-zone" style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
                             <span style="color: var(--accent-purple); font-weight: bold;">$ root@maria_os: ~ </span>
                             <input type="text" id="glitch-task-input" style="background: transparent; border: none; color: #00ff00; font-family: monospace; font-size: 14px; outline: none; width: 300px;" autofocus>
@@ -122,7 +122,7 @@ function bindInlineTerminalInput() {
                     feedback.innerText = "❌ Comando incorrecto. Escriba 'fix'.";
                 }
             } else if (currentTaskStep === 3) {
-                if (valor === "mimujermanda") {
+                if (valor === "soyunlobodomesticado") {
                     document.getElementById("inline-terminal-zone")?.remove(); // Quitar el último prompt
                     
                     // Imprimir las líneas de éxito definitivas al fondo del todo
