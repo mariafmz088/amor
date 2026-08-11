@@ -18,36 +18,126 @@
 <!-- ==========================================
 1. PANTALLAS DE CARGA E INICIO (FASES DOS)
 ========================================== --> 
-<div id="loading-screen" class="screen window">
-    <div class="window-header draggable-header custom-header">
-        <div class="dot-group">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
+    <div id="error-screen-overlay" class="error-overlay"></div>
+    <div id="success-screen-overlay" class="success-overlay"></div>
+
+    <div id="loading-screen" class="window-frame">
+
+        <div class="window-top-bar">
+            <div class="window-title">🛰️ COORD_DECRYPTOR_v2.0d.exe</div>
+            <div class="window-controls">✕</div>
         </div>
-        <span class="window-title">boot_sequence.sh</span>
-    </div>
-    <div class="window-body terminal-split-body">
-        <!-- Columna Izquierda: Terminal Activa con Auto-Scroll reparado -->
-        <div class="terminal-active-body">
-            <div id="boot-text"></div>
-            <div id="terminal-input-zone" class="hidden">
-                <span id="terminal-prompt-text" style="font-family: 'Consolas', monospace; display: block; margin-bottom: 5px; color: var(--accent-yellow); text-align: left;"></span>
-                <div class="terminal-input-row">
-                    <span style="color: var(--accent-purple); font-weight: bold; font-family: 'Consolas', monospace;">$ root@main_os: ~ </span>
-                    <input type="text" id="terminal-user-input" autofocus>
+        <div class="interface-grid">
+            <!-- Visor del Mapa Táctico -->
+            <div class="map-viewport">
+                <div class="map-image-layer"></div>
+                <div class="crosshair-overlay"></div>
+                
+                <!-- LOS 15 NODOS DEL RADAR -->
+                <div class="map-node node-cyan p-n1" id="node1" onclick="openPopup('popup1')"></div>
+                <div class="map-node node-magenta p-n2" id="node2" onclick="openPopup('popup2')"></div>
+                <div class="map-node node-cyan p-n3" id="node3" onclick="openPopup('popup3')"></div>
+                <div class="map-node node-magenta p-n4" id="node4" onclick="openPopup('popup4')"></div>
+                <div class="map-node node-cyan p-n5" id="node5" onclick="openPopup('popup5')"></div>
+                <div class="map-node node-magenta p-n6" id="node6" onclick="openPopup('popup6')"></div>
+                <div class="map-node node-cyan p-n7" id="node7" onclick="openPopup('popup7')"></div>
+                <div class="map-node node-magenta p-n8" id="node8" onclick="openPopup('popup8')"></div>
+                <div class="map-node node-cyan p-n9" id="node9" onclick="openPopup('popup9')"></div>
+                <div class="map-node node-magenta p-n10" id="node10" onclick="openPopup('popup10')"></div>
+                <div class="map-node node-cyan p-n11" id="node11" onclick="openPopup('popup11')"></div>
+                <div class="map-node node-magenta p-n12" id="node12" onclick="openPopup('popup12')"></div>
+                <div class="map-node node-cyan p-n13" id="node13" onclick="openPopup('popup13')"></div>
+                <div class="map-node node-magenta p-n14" id="node14" onclick="openPopup('popup14')"></div>
+                <div class="map-node node-cyan p-n15" id="node15" onclick="openPopup('popup15')"></div>
+
+                <!-- LAS 15 VENTANAS DE ACERTIJOS INDEPENDIENTES -->
+                <div id="popup1" class="cyber-popup"><div class="popup-top">🔑 ACERTIJO 01</div><div class="popup-main"><p class="acertijo-txt" id="txt-acertijo-1"></p><div class="input-row"><input type="text" id="ans1" placeholder="[...] RESPUESTA"><button onclick="checkAnswer(1)">OK</button></div></div></div>
+                <div id="popup2" class="cyber-popup"><div class="popup-top">🔑 ACERTIJO 02</div><div class="popup-main"><p class="acertijo-txt" id="txt-acertijo-2"></p><div class="input-row"><input type="text" id="ans2" placeholder="[...] RESPUESTA"><button onclick="checkAnswer(2)">OK</button></div></div></div>
+                <div id="popup3" class="cyber-popup"><div class="popup-top">🔑 ACERTIJO 03</div><div class="popup-main"><p class="acertijo-txt" id="txt-acertijo-3"></p><div class="input-row"><input type="text" id="ans3" placeholder="[...] RESPUESTA"><button onclick="checkAnswer(3)">OK</button></div></div></div>
+                <div id="popup4" class="cyber-popup"><div class="popup-top">🔑 ACERTIJO 04</div><div class="popup-main"><p class="acertijo-txt" id="txt-acertijo-4"></p><div class="input-row"><input type="text" id="ans4" placeholder="[...] RESPUESTA"><button onclick="checkAnswer(4)">OK</button></div></div></div>
+                <div id="popup5" class="cyber-popup"><div class="popup-top">🔑 ACERTIJO 05</div><div class="popup-main"><p class="acertijo-txt" id="txt-acertijo-5"></p><div class="input-row"><input type="text" id="ans5" placeholder="[...] RESPUESTA"><button onclick="checkAnswer(5)">OK</button></div></div></div>
+                <div id="popup6" class="cyber-popup"><div class="popup-top">🔑 ACERTIJO 06</div><div class="popup-main"><p class="acertijo-txt" id="txt-acertijo-6"></p><div class="input-row"><input type="text" id="ans6" placeholder="[...] RESPUESTA"><button onclick="checkAnswer(6)">OK</button></div></div></div>
+                <div id="popup7" class="cyber-popup"><div class="popup-top">🔑 ACERTIJO 07</div><div class="popup-main"><p class="acertijo-txt" id="txt-acertijo-7"></p><div class="input-row"><input type="text" id="ans7" placeholder="[...] RESPUESTA"><button onclick="checkAnswer(7)">OK</button></div></div></div>
+                <div id="popup8" class="cyber-popup"><div class="popup-top">🔑 ACERTIJO 08</div><div class="popup-main"><p class="acertijo-txt" id="txt-acertijo-8"></p><div class="input-row"><input type="text" id="ans8" placeholder="[...] RESPUESTA"><button onclick="checkAnswer(8)">OK</button></div></div></div>
+                <div id="popup9" class="cyber-popup"><div class="popup-top">🔑 ACERTIJO 09</div><div class="popup-main"><p class="acertijo-txt" id="txt-acertijo-9"></p><div class="input-row"><input type="text" id="ans9" placeholder="[...] RESPUESTA"><button onclick="checkAnswer(9)">OK</button></div></div></div>
+                <div id="popup10" class="cyber-popup"><div class="popup-top">🔑 ACERTIJO 10</div><div class="popup-main"><p class="acertijo-txt" id="txt-acertijo-10"></p><div class="input-row"><input type="text" id="ans10" placeholder="[...] RESPUESTA"><button onclick="checkAnswer(10)">OK</button></div></div></div>
+                <div id="popup11" class="cyber-popup"><div class="popup-top">🔑 ACERTIJO 11</div><div class="popup-main"><p class="acertijo-txt" id="txt-acertijo-11"></p><div class="input-row"><input type="text" id="ans11" placeholder="[...] RESPUESTA"><button onclick="checkAnswer(11)">OK</button></div></div></div>
+                <div id="popup12" class="cyber-popup"><div class="popup-top">🔑 ACERTIJO 12</div><div class="popup-main"><p class="acertijo-txt" id="txt-acertijo-12"></p><div class="input-row"><input type="text" id="ans12" placeholder="[...] RESPUESTA"><button onclick="checkAnswer(12)">OK</button></div></div></div>
+                <div id="popup13" class="cyber-popup"><div class="popup-top">🔑 ACERTIJO 13</div><div class="popup-main"><p class="acertijo-txt" id="txt-acertijo-13"></p><div class="input-row"><input type="text" id="ans13" placeholder="[...] RESPUESTA"><button onclick="checkAnswer(13)">OK</button></div></div></div>
+                <div id="popup14" class="cyber-popup"><div class="popup-top">🔑 ACERTIJO 14</div><div class="popup-main"><p class="acertijo-txt" id="txt-acertijo-14"></p><div class="input-row"><input type="text" id="ans14" placeholder="[...] RESPUESTA"><button onclick="checkAnswer(14)">OK</button></div></div></div>
+                <div id="popup15" class="cyber-popup"><div class="popup-top">🔑 ACERTIJO 15</div><div class="popup-main"><p class="acertijo-txt" id="txt-acertijo-15"></p><div class="input-row"><input type="text" id="ans15" placeholder="[...] RESPUESTA"><button onclick="checkAnswer(15)">OK</button></div></div></div>
+            </div>
+            <!-- Panel de Control Derecho -->
+            <div class="control-sidebar">
+                <div class="side-widget">
+                    <div class="widget-header">📡 RECOLECTADAS: <span id="counter">0/15</span></div>
+                    <div class="widget-body list-scrollable">
+                        <div class="list-item" id="list1">Sector 01: <span class="badge-lock">[___]</span></div>
+                        <div class="list-item" id="list2">Sector 02: <span class="badge-lock">[___]</span></div>
+                        <div class="list-item" id="list3">Sector 03: <span class="badge-lock">[___]</span></div>
+                        <div class="list-item" id="list4">Sector 04: <span class="badge-lock">[___]</span></div>
+                        <div class="list-item" id="list5">Sector 05: <span class="badge-lock">[___]</span></div>
+                        <div class="list-item" id="list6">Sector 06: <span class="badge-lock">[___]</span></div>
+                        <div class="list-item" id="list7">Sector 07: <span class="badge-lock">[___]</span></div>
+                        <div class="list-item" id="list8">Sector 08: <span class="badge-lock">[___]</span></div>
+                        <div class="list-item" id="list9">Sector 09: <span class="badge-lock">[___]</span></div>
+                        <div class="list-item" id="list10">Sector 10: <span class="badge-lock">[___]</span></div>
+                        <div class="list-item" id="list11">Sector 11: <span class="badge-lock">[___]</span></div>
+                        <div class="list-item" id="list12">Sector 12: <span class="badge-lock">[___]</span></div>
+                        <div class="list-item" id="list13">Sector 13: <span class="badge-lock">[___]</span></div>
+                        <div class="list-item" id="list14">Sector 14: <span class="badge-lock">[___]</span></div>
+                        <div class="list-item" id="list15">Sector 15: <span class="badge-lock">[___]</span></div>
+                    </div>
+                </div>
+                <!-- Teclado Numérico Digital -->
+                <div class="cyber-keypad">
+                    <div class="keypad-row">
+                        <button class="key">1</button>
+                        <button class="key">2</button>
+                        <button class="key">3</button>
+                    </div>
+                    <div class="keypad-row">
+                        <button class="key">4</button>
+                        <button class="key">5</button>
+                        <button class="key">6</button>
+                    </div>
+                    <div class="keypad-row">
+                        <button class="key">7</button>
+                        <button class="key">8</button>
+                        <button class="key">9</button>
+                    </div>
+                    <div class="keypad-row">
+                        <button class="key cmd-key">C</button>
+                        <button class="key">0</button>
+                        <button class="key cmd-key">#</button>
+                    </div>
+                </div>
+                <!-- 🖥️ Nueva pantalla para el Teclado Digital -->
+                <div class="side-widget keypad-display-widget">
+                    <div class="widget-header">🖥️ MONITOR DE ENTRADA (PIN)</div>
+                    <div class="widget-body">
+                        <div class="terminal-display" id="pin-screen">[SISTEMA EN ESPERA...]</div>
+                    </div>
+                </div> 
+                <div class="side-widget">
+                    <div class="widget-header">📊 ESTADO DE DESENCRIPCIÓN</div>
+                    <div class="widget-body">
+                        <div class="status-bar-container"><div class="status-bar-fill" id="bar-fill"></div></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Columna Derecha: Panel de Bitácora -->
-        <div id="v2-bitacora-respuestas">
-            <span style="color: var(--accent-purple); font-weight: bold; display: block; margin-bottom: 8px; border-bottom: 1px dashed #333; padding-bottom: 4px;">HISTORIAL_DE_REGISTROS</span>
-            <div id="v2-lista-palabras-guardadas" style="line-height: 1.6;">
-                <span style="color: #444; font-style: italic;">Esperando transmisiones...</span>
+        <div class="footer-crypto-panel">
+            <div class="panel-label">CÓDIGO HEXADECIMAL DE BLOQUEO</div>
+            <div class="hex-display-container">
+                <div class="hex-display">
+                    #<span id="p1">?</span><span id="p2">?</span><span id="p3">?</span><span id="p4">?</span><span id="p5">?</span><span id="p6">?</span><span id="p7">?</span><span id="p8">?</span><span id="p9">?</span><span id="p10">?</span><span id="p11">?</span><span id="p12">?</span><span id="p13">?</span><span id="p14">?</span><span id="p15">?</span>
+                </div>
             </div>
+            <button id="master-btn" class="locked-btn" onclick="startLoadingPhase()" disabled>INICIAR INTERFAZ</button>
         </div>
     </div>
-</div>
+
 
 <div id="joke-loading-screen" class="screen hidden">
     <div class="terminal-window mini-box text-center">

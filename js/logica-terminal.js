@@ -1,20 +1,4 @@
-const v2AcrosticoPistas = [
-    "Pregunta [01/15]: ¿Cómo se llama la estructura de datos donde el primero en entrar es el primero en salir? (Se vale Google).",
-    "Pregunta [02/15]: Nombre de mi perrita.",
-    "Pregunta [03/15]: Apellido del piloto tricampeón de Red Bull.",
-    "Pregunta [04/15]: ¿Cuál es letra que te hizo sufrir para el otro acertijo?",
-    "Pregunta [05/15]: ¿Qué tipo de pintura dejó tus zapatillas con colorcito?",
-    "Pregunta [06/15]: Escultura del primer museo que vimos juntos.",
-    "Pregunta [07/15]: ¿Qué alimento de Popeyes vendería mi alma por comer?",
-    "Pregunta [08/15]: ¿Cuál fue el primer libro que me regalaste?",
-    "Pregunta [09/15]: ¿En qué fecha te pinté la carita por primera vez? (no acepto numeros amor, escribe)",
-    "Pregunta [10/15]: ¿Qué instrumento mide los terremotos?",
-    "Pregunta [11/15]: ¿A qué soy alérgica?",
-    "Pregunta [12/15]: ¿Qué otro piloto siempre va pegadito a Max y sabrosea a Max?.",
-    "Pregunta [13/15]: ¿Qué aplicación usabamos para hablar de amigos?",
-    "Pregunta [14/15]: ¿Posición que prefiero?",
-    "Pregunta [15/15]: ¿Palabra favorita? Quiero saber que se te ocurre, intenta"
-];
+
 const jokeList = [
     "Compilando al hombre más guapo del universo... Espera tantito. ❤️",
     "Actualizando el algoritmo de mimos... Ahora con un 27% más de cariño.",
@@ -40,27 +24,7 @@ const jokeList = [
     "Glitches detectados en tu sistema emocional. Menos mal que tu novia tiene un doctorado en aguantar tus dramas y caras largas. 🎭🤷‍♀️",
     "Ejecutando script de teletransportación mental... Listo, ya estoy metida en tu cabeza otra vez haciendo desorden. ⚡🧠"
 ];
-const bootLines = [
-    "$ updater.exe --force-install\n",
-    "🚀 Buscando parches... ¡love_update_v8.0.pkg detectado!\n",
-    "\n",
-    "📦 Aplicando cambios en caliente:\n",
-    "  [+] +27% más mimos obligatorios (o el sistema tira Kernel Panic).\n",
-    "  [+] Límite de besitos configurado en: INFINITO.\n",
-    "  [+] Actualizado rastreador GPS: Ahora sé si fuiste a la cocina sin avisar. 🕵️‍♀️\n",
-    "  [-] Intentando reducir dramas de la novia... [FALLÓ: Tiempo de espera agotado]\n",
-    "\n",
-    "⚠️ ALERTA DE CRASH CRÍTICO:\n",
-    "  No fue posible instalar el módulo 'menos_celos.patch'.\n",
-    "  Motivo: Función nativa protegida por hardware. Si se elimina, explota el servidor.\n",
-    "\n",
-    "🔒 SEGURIDAD ACTUALIZADA:\n",
-    "  Se bloqueó la opción 'Ocultar Ubicación'. Eres propiedad del sistema. 🔐😼\n",
-    "\n",
-    "🔄 Reiniciando mi_hombre.exe... No cierres la ventanita porfi, te estoy vigilando. ❤️\n",
-    "\n",
-    "$ La pregunta del millón es...\n"
-];
+
 const exeLines = [
     "Inicializando proyecto...", "",
     "Actualizando dependencias de código compartido...", "",
@@ -100,14 +64,35 @@ const exeLines = [
     "Todo listo.", "",
     'RelationshipStatus = "Seguimos eligiéndonos todos los días con todo y bugs. ❤️"'
 ];
+const v2AcrosticoPistas = [
+    "¿Cómo se llama la estructura de datos donde el primero en entrar es el primero en salir? (Se vale Google).",
+    "Nombre de mi perrita.",
+    "Apellido del piloto tricampeón de Red Bull.",
+    "¿Cuál es letra que te hizo sufrir para el otro acertijo?",
+    "¿Qué tipo de pintura dejó tus zapatillas con colorcito?",
+    "Escultura del primer museo que vimos juntos.",
+    "¿Qué alimento de Popeyes vendería mi alma por comer?",
+    "¿Cuál fue el primer libro que me regalaste?",
+    "¿En qué fecha te pinté la carita por primera vez? (no acepto numeros amor, escribe)",
+    "¿Qué instrumento mide los terremotos?",
+    "¿A qué soy alérgica?",
+    "¿Qué otro piloto siempre va pegadito a Max y sabrosea a Max?.",
+    "¿Qué aplicación usábamos para hablar de amigos?",
+    "¿Posición que prefiero?",
+    "¿Palabra favorita? Quiero saber que se te ocurre, intenta"
+];
 
-let terminalStep = "question";
-let lineIndex = 0;
-let charIndex = 0;
-let currentTextHtml = "";
-let v2AcrosticoLetras = ["q", "p", "v", "ñ", "v", "o", "p", "a", "o", "s", "b", "c", "i", "d", "o"];
-let v2AcrosticoIdx = 0;
-let v2PalabrasRegistradasArray = [];
+const respuestasCorrectas = [
+    "queue", "petipanes", "verstappen", "ñ", "tempera", 
+    "oso", "papitasconaji", "alasdesangre", "octubre", "sismografo", 
+    "bloqueador", "checo", "instagram", "tudueña", "nosabo"
+];
+let solvedCount = 0;
+const totalNodes = 15;
+let keypadInput = ""; 
+const SECRET_PIN = "2026"; // 🔑 PIN secreto para forzar el sistema
+const letrasHex = ["L", "O", "V", "E", "2", "0", "2", "6", "!", "X", "A", "B", "C", "D", "E"];
+
 let currentProgress = 0;
 let jokeInterval = null;
 let progressInterval = null;
@@ -127,214 +112,7 @@ function activarPantallaCompleta() {
 }
 
 
-function typeBootLetter() {
-    const bootTextDiv = document.getElementById("boot-text");
-    const zone = document.getElementById("terminal-input-zone");
-    if (!bootTextDiv) return;
-    if (zone) zone.classList.add("hidden"); // Oculta la zona de entrada al arrancar
 
-    startContinuousTypingSound();
-
-    function runType() {
-        if (lineIndex >= bootLines.length) {
-            stopContinuousTypingSound();
-            startCyberambientMusic();
-            activateTerminalInteractivity();
-            glitchScreenScrollTerminal();
-            return;
-        }
-
-        let currentLineText = bootLines[lineIndex];
-
-        if (charIndex < currentLineText.length) {
-            let character = currentLineText.charAt(charIndex);
-            currentTextHtml += (character === "\n") ? "<br>" : character;
-            bootTextDiv.innerHTML = currentTextHtml;
-            charIndex++;
-            glitchScreenScrollTerminal();
-            setTimeout(runType, 40);
-        } else {
-            lineIndex++;
-            charIndex = 0;
-            setTimeout(runType, 300);
-        }
-    }
-
-    runType();
-}
-function activateTerminalInteractivity() {
-    const zone = document.getElementById("terminal-input-zone");
-    const promptTxt = document.getElementById("terminal-prompt-text");
-    const inputField = document.getElementById("terminal-user-input");
-    const bootTextDiv = document.getElementById("boot-text");
-    if (!zone || !promptTxt || !inputField || !bootTextDiv) return;
-    
-    zone.classList.remove("hidden");
-    inputField.focus();
-
-    const actualizarPrompt = () => {
-        if (terminalStep === "question") {
-            promptTxt.innerHTML = `<span style="color: #fff;">¿Me amas mucho? (Y/N):</span>`;
-        } else if (terminalStep === "password") {
-            promptTxt.innerHTML = `<span style="color:var(--accent-yellow);">${v2AcrosticoPistas[v2AcrosticoIdx]}</span><br><span style="color:#fff;">Ingrese palabra clave:</span>`;
-        }
-    };
-    actualizarPrompt();
-
-    inputField.onkeydown = (e) => {
-        if (e.key !== "Enter") return;
-
-        let valor = inputField.value.trim().toLowerCase();
-        inputField.value = ""; 
-        const rootPrompt = `<br><span style="color: var(--accent-purple); font-weight: bold;">$ root@main_os: ~ </span>`;
-
-        // 🛠️ COMANDO superusuario: Ir directo al escritorio principal
-        if (valor === "superusuario") {
-            if (jokeInterval) clearInterval(jokeInterval);
-            if (progressInterval) clearInterval(progressInterval);
-            
-            const loadScreen = document.getElementById("loading-screen");
-            const jokeScreen = document.getElementById("joke-loading-screen");
-            const desktop = document.getElementById("desktop-screen");
-
-            if (loadScreen) loadScreen.style.setProperty("display", "none", "important");
-            if (jokeScreen) jokeScreen.style.setProperty("display", "none", "important");
-            
-            // 🌟 CORREGIDO: Usamos "block" para mantener el diseño original de tu fondo de pantalla
-            if (desktop) desktop.style.setProperty("display", "block", "important");
-            
-            if (typeof closeWindow === "function") closeWindow("win-viejito");
-            return;
-        }
-
-        // 🛠️ COMANDO supercarga: Ir directo a la pantalla de chistes
-        if (valor === "cargasuperior") {
-            const loadScreen = document.getElementById("loading-screen");
-            const jokeScreen = document.getElementById("joke-loading-screen");
-
-            if (loadScreen) loadScreen.style.setProperty("display", "none", "important");
-            if (jokeScreen) {
-                jokeScreen.classList.remove("hidden");
-                // 🌟 CORREGIDO: Usamos "block" para que la ventana interna del contador no se deforme
-                jokeScreen.style.setProperty("display", "block", "important");
-            }
-            
-            // 🌟 CORREGIDO: Movimos esta línea ADENTRO del bloque para que solo se ejecute con el comando real
-            if (typeof startJokeLoading === "function") startJokeLoading();
-            return;
-        }
-
-        // [FASE A]: Pregunta de amor inicial
-        if (terminalStep === "question") {
-            if (["y", "si", "s","SI","S","yes"].includes(valor)) {
-                bootTextDiv.innerHTML += `${rootPrompt}<span style="color: #00ff00;">${valor}</span><br><br><span style='color:var(--accent-green);'>✔ Conexión establecida.</span><br><span style='color:var(--accent-purple);'>[SISTEMA]: Inicializando Protocolo de Encriptación Secuencial...</span><br><span style='color:#abb2bf;'>[INFO]: Descifre las siguientes transmisiones para autorizar el escritorio.</span><br><br>`;
-                terminalStep = "password";
-                v2AcrosticoIdx = 0; 
-                actualizarPrompt();
-                glitchScreenScrollTerminal();
-            } else {
-                const loadingScreen = document.getElementById("loading-screen");
-                if (loadingScreen) { loadingScreen.style.backgroundColor = "#000"; loadingScreen.innerHTML = ""; }
-            }
-        } 
-        // [FASE B]: 15 Acertijos en Cadena
-        else if (terminalStep === "password") {
-            let letraRequerida = v2AcrosticoLetras[v2AcrosticoIdx];
-            
-            if (valor.length > 0 && valor.charAt(0) === letraRequerida) {
-                v2PalabrasRegistradasArray.push(valor);
-                
-                const contenedorLista = document.getElementById("v2-lista-palabras-guardadas");
-                if (contenedorLista) {
-                    contenedorLista.innerHTML = v2PalabrasRegistradasArray.map((palabra, i) => 
-                        `<div style="color:#27c93f;">✔ [REG_${i+1}]: <span style="color:#fff; font-weight:bold;">${palabra}</span></div>`
-                    ).join("");
-                }
-
-                bootTextDiv.innerHTML += `${rootPrompt}<span style="color: #00ff00;">${valor}</span><br><span style='color:var(--accent-green);'>✔ Transmisión [${v2AcrosticoIdx + 1}] guardada con éxito.</span><br>`;
-                v2AcrosticoIdx++;
-
-                if (v2AcrosticoIdx < v2AcrosticoLetras.length) {
-                    actualizarPrompt();
-                } else {
-                    zone.classList.add("hidden");
-                    bootTextDiv.innerHTML += "<br><span style='color:var(--accent-purple); font-weight:bold; font-size:14px;'>🧠 [TRANS_COMPLETADA]: LA RESPUESTA ESTÁ EN TUS RESPUESTAS.</span><br><span style='color:#abb2bf;'>La verdad allí no encontrarás nada, te lo repito amor, ruegame.</span>";
-                    if (typeof spawnFinalPasswordBox === "function") setTimeout(spawnFinalPasswordBox, 1200);
-                }
-                glitchScreenScrollTerminal();
-            } else {
-                bootTextDiv.innerHTML += `${rootPrompt}<span style="color: #ff5f56;">${valor}</span><br><span style='color:var(--red-dot);'>❌ Error de descifrado: Entrada no válida para la transmisión actual.</span><br>`;
-                glitchScreenScrollTerminal();
-            }
-        }
-    };
-}
-function spawnFinalPasswordBox() {
-    const msgBox = document.createElement("div");
-    msgBox.id = "win-popup-login-final";
-    msgBox.className = "window";
-
-    Object.assign(msgBox.style, {
-        position: "fixed",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        width: "360px",
-        zIndex: "999999999",
-        borderColor: "var(--accent-purple)",
-        boxShadow: "0 0 25px rgba(186, 85, 211, 0.4)"
-    });
-    msgBox.innerHTML = `
-        <div class="window-header">
-            <div class="dot-group"><span class="dot red"></span></div>
-            <span class="window-title">Security_Gateway.exe</span>
-        </div>
-        <div class="window-body text-center" style="background-color: #202026; padding: 25px; color:#fff; font-family: monospace;">
-            <p style="font-size:14px; font-weight:bold; color:var(--accent-purple); margin-bottom:10px; text-align: center;">🔐 CONTROL DE ACCESO AL ESCRITORIO</p>
-            <p style="font-size:12px; color:#abb2bf; margin-bottom:15px; text-align: center;">Descifra el acertijo de la consola para obtener la llave maestra de desencriptación.</p>
-            <input type="password" id="popup-final-pass-input" style="background:#151518; border:1px solid #444; color:#00ff00; font-family:monospace; padding:8px; width:100%; text-align:center; outline:none; border-radius:4px; font-size:14px;" placeholder="Ingrese clave oculta..." autofocus>
-            <div id="popup-final-error-txt" style="color:var(--red-dot); font-size:11px; margin-top:8px; font-weight:bold; text-align: center;"></div>
-        </div>
-    `;
-    document.body.appendChild(msgBox);
-    
-    const inputField = document.getElementById("popup-final-pass-input");
-    if (!inputField) return;
-
-    inputField.focus();
-    inputField.onkeydown = (e) => {
-        if (e.key !== "Enter") return;
-
-        let claveIngresada = inputField.value.trim().toLowerCase();
-        const errorTxt = document.getElementById("popup-final-error-txt");
-        
-        // 🌟 OPTIMIZADO: Simplificamos la validación usando .includes() en una sola línea corta
-        if (["dientesdelata", "dientes de lata"].includes(claveIngresada)) {
-            msgBox.remove(); 
-            
-            const bootTextDiv = document.getElementById("boot-text");
-            if (bootTextDiv) {
-                bootTextDiv.innerHTML += "<br><span style='color:var(--accent-green); font-weight:bold;'>✔ LLAVE MAESTRA CORRECTA. Cargando escritorio...</span>";
-            }
-            
-            const mainLoadingScreen = document.getElementById("loading-screen");
-            if (mainLoadingScreen) {
-                mainLoadingScreen.classList.add("hidden");
-                mainLoadingScreen.style.setProperty("display", "none", "important"); 
-            }
-            
-            const jokeScreen = document.getElementById("joke-loading-screen");
-            if (jokeScreen) {
-                jokeScreen.classList.remove("hidden");
-                // Aseguramos que herede el display correcto para que no se altere el contador azul
-                jokeScreen.style.setProperty("display", "block", "important");
-                if (typeof startJokeLoading === "function") startJokeLoading();
-            }
-        } else {
-            if (errorTxt) errorTxt.innerText = "❌ Clave incorrecta. Ruega a tu patrona.";
-        }
-    };
-}
 function startJokeLoading() {
 
     activarPantallaCompleta();
@@ -417,18 +195,190 @@ function confirmSkip(isViejitoAburrido) {
         closeWindow("win-viejito"); // 🌟 REPARADO: Obliga a la alerta a apagarse si decide quedarse a leer
     }
 }
+function checkAnswer(nodeNum) {
+    const inputElement = document.getElementById('ans' + nodeNum);
+    if (!inputElement) return;
 
+    const valueInput = inputElement.value.toLowerCase().trim();
+    const respuestaEsperada = respuestasCorrectas[nodeNum - 1];
 
+    if (valueInput === respuestaEsperada) {
+        // 🌟 ¡DESTELLO VERDE EN TODA LA PANTALLA!
+        const successOverlay = document.getElementById('success-screen-overlay');
+        if (successOverlay) {
+            successOverlay.classList.add('active');
+        }
 
+        // ⏳ Espera exactamente 2.2 segundos (2200ms) antes de procesar el éxito
+        setTimeout(() => {
+            // Apaga el destello verde de la pantalla
+            if (successOverlay) {
+                successOverlay.classList.remove('active');
+            }
 
-// 🔌 EL INTERRUPTOR PRINCIPAL DEL SISTEMA
-// Este evento espera a que todo tu HTML cargue y despierta la terminal
-window.addEventListener("DOMContentLoaded", () => {
-    // Llama a la función que ahora vive en logica-terminal.js
-    if (typeof typeBootLetter === "function") {
-        typeBootLetter(); 
+            const displayChar = document.getElementById('p' + nodeNum);
+            if (displayChar) displayChar.innerText = letrasHex[nodeNum - 1];
+
+            const currentNode = document.getElementById('node' + nodeNum);
+            if (currentNode) {
+                currentNode.classList.add('node-resolved');
+                currentNode.onclick = null;
+            }
+
+            const listItem = document.getElementById('list' + nodeNum);
+            if (listItem) {
+                listItem.innerHTML = `Sector ${nodeNum < 10 ? '0' + nodeNum : nodeNum}: <span class="badge-ok">[OK]</span>`;
+            }
+
+            solvedCount++;
+            document.getElementById('counter').innerText = `${solvedCount}/${totalNodes}`;
+            document.getElementById('bar-fill').style.width = ((solvedCount / totalNodes) * 100) + '%';
+
+            // Cierra el panel de forma fluida
+            closePopup('popup' + nodeNum);
+
+            if (solvedCount === totalNodes) {
+                const masterBtn = document.getElementById('master-btn');
+                if (masterBtn) {
+                    masterBtn.removeAttribute('disabled');
+                    masterBtn.className = 'locked-btn unlocked';
+                }
+            }
+        }, 2200);
+
+    } else {
+        // 🚨 EFECTO DE LUZ DE ERROR EN PANTALLA (Rojo si falla)
+        const errorOverlay = document.getElementById('error-screen-overlay');
+        if (errorOverlay) {
+            errorOverlay.classList.add('active');
+
+            // ⏳ Apaga el efecto rojo automáticamente después de 2.2 segundos (2200ms)
+            setTimeout(() => {
+                errorOverlay.classList.remove('active');
+            }, 2200);
+        }
     }
+}
+
+function handleKeypadPress(value) {
+    const pinScreen = document.getElementById('pin-screen');
+    
+    if (value === "C") {
+        keypadInput = ""; // Borra la memoria
+        if (pinScreen) pinScreen.innerText = "[SISTEMA EN ESPERA...]";
+        console.log("Teclado reiniciado.");
+    } else if (value === "#") {
+        if (keypadInput === SECRET_PIN) {
+            if (pinScreen) pinScreen.innerText = "ACCESO OTORGADO";
+            triggerMassiveHack();
+        } else {
+            // Alarma roja de error
+            keypadInput = "";
+            if (pinScreen) pinScreen.innerText = "PIN INVÁLIDO";
+            
+            const errorOverlay = document.getElementById('error-screen-overlay');
+            if (errorOverlay) {
+                errorOverlay.classList.add('active');
+                setTimeout(() => { 
+                    errorOverlay.classList.remove('active'); 
+                    if (pinScreen) pinScreen.innerText = "[SISTEMA EN ESPERA...]";
+                }, 1500);
+            }
+        }
+    } else {
+        // Acumula dígitos (máximo 4 para el PIN de aniversario/secreto)
+        if (keypadInput.length < 4) {
+            keypadInput += value;
+            // Muestra asteriscos en la pantalla digital por cada número presionado
+            if (pinScreen) pinScreen.innerText = "* ".repeat(keypadInput.length);
+        }
+    }
+}
+function triggerMassiveHack() {
+    solvedCount = 0;
+    
+    // 🚨 Activa la luz de emergencia VERDE neón de éxito en pantalla
+    const successOverlay = document.getElementById('success-screen-overlay');
+    if (successOverlay) successOverlay.classList.add('active');
+
+    for (let i = 1; i <= totalNodes; i++) {
+        const displayChar = document.getElementById('p' + i);
+        if (displayChar) displayChar.innerText = letrasHex[i - 1];
+        
+        const currentNode = document.getElementById('node' + i);
+        if (currentNode) {
+            currentNode.classList.add('node-resolved');
+            currentNode.onclick = null; 
+        }
+        
+        const listItem = document.getElementById('list' + i);
+        if (listItem) {
+            listItem.innerHTML = `Sector ${i < 10 ? '0' + i : i}: <span class="badge-ok">[OVERRIDE]</span>`;
+        }
+        
+        closePopup('popup' + i);
+    }
+    
+    solvedCount = totalNodes;
+    document.getElementById('counter').innerText = `${totalNodes}/${totalNodes}`;
+    document.getElementById('bar-fill').style.width = '100%';
+    
+    // Desactiva el destello verde después de 2 segundos para apreciar la victoria limpia
+    setTimeout(() => {
+        if (successOverlay) successOverlay.classList.remove('active');
+    }, 2000);
+
+    const masterBtn = document.getElementById('master-btn');
+    if (masterBtn) {
+        masterBtn.removeAttribute('disabled');
+        masterBtn.className = 'locked-btn unlocked';
+    }
+}
+function openPopup(id) {
+    const activePopups = document.querySelectorAll('.cyber-popup');
+    activePopups.forEach(p => p.style.display = 'none');
+    const popup = document.getElementById(id);
+    if (popup) popup.style.display = 'block';
+}
+function closePopup(id) {
+    const popup = document.getElementById(id);
+    if (popup) popup.style.display = 'none';
+}
+function startLoadingPhase() {
+    // 1. Apaga la pantalla del mapa usando el id que tiene en tu html
+    document.getElementById("loading-screen").style.setProperty("display", "none", "important");
+    
+    // 2. Enciende tu pantalla de chistes nativa quitándole la clase hidden
+    const jokeScreen = document.getElementById("joke-loading-screen");
+    jokeScreen.classList.remove("hidden");
+    jokeScreen.style.setProperty("display", "block", "important");
+    
+    // 3. Dispara tu función nativa para que corran los chistes y la barra azul
+    if (typeof startJokeLoading === "function") startJokeLoading();
+}
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    v2AcrosticoPistas.forEach((pregunta, index) => {
+        const numeroPregunta = index + 1;
+        const parrafoAcertijo = document.getElementById("txt-acertijo-" + numeroPregunta);
+        if (parrafoAcertijo) {
+            parrafoAcertijo.innerText = `PREGUNTA [${numeroPregunta < 10 ? '0' + numeroPregunta : numeroPregunta}/15]: ${pregunta}`;
+        }
+    });
+
+    const keys = document.querySelectorAll(".cyber-keypad .key");
+    keys.forEach(key => {
+        key.addEventListener("click", () => {
+            const keyValue = key.innerText;
+            handleKeypadPress(keyValue);
+        });
+    });
 });
-
-
 

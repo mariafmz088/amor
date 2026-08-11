@@ -2,32 +2,6 @@
    5. COMPONENTES DE CARGAS, CHISTES Y TERMINALES
    ========================================================================== */
 
-.terminal-window {
-    width: 90%;
-    max-width: 600px;
-    background-color: var(--bg-window);
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-    border: 1px solid #3c3c3c;
-    overflow: hidden;
-}
-
-.terminal-body-bg {
-    background-color: #0c0c0c;
-    color: #d4d4d4;
-    min-height: 220px;
-    padding: 20px;
-    font-family: monospace;
-    white-space: pre-wrap;
-    line-height: 1.6;
-}
-
-.terminal-body {
-    background-color: #0c0c0c;
-    color: #00ff00;
-    font-family: monospace;
-    min-height: 220px;
-}
 
 .joke-box {
     background-color: #151515;
@@ -308,25 +282,107 @@
    10. PANTALLAS DE CARGA, SCROLLBARS Y LIENZO
    ========================================================================== */
 
-#loading-screen {
+/* 🌟 Cambiamos el selector antiguo por el de tu nueva estructura */
+.window-frame {
     position: fixed !important;
     top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
-    width: 800px !important;
-    height: 450px !important;
-    /* CAMBIO MÁGICO: Cambiamos el fondo plano por tu foto */
-    background-image: url('../assets/img/F2.jpeg') !important;
-    background-size: cover !important;
-    background-position: center !important;
-    border: 1px solid #333 !important;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.85) !important;
-    border-radius: 8px !important;
+    width: 94vw !important;
+    height: 88vh !important;
+    max-width: 1250px !important;
+    background-color: #06010f;
+    border: 2px solid #5a1291;
+    border-radius: 12px;
+    box-shadow: 0 0 50px rgba(157, 0, 255, 0.35), inset 0 0 30px #000;
+    display: flex !important;
+    flex-direction: column !important;
     overflow: hidden !important;
     z-index: 99999995 !important;
+    padding: 10px !important;
     box-sizing: border-box !important;
-    display: block !important;
 }
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #040108;
+    background-image: radial-gradient(circle, #15052b 0%, #030006 100%);
+    color: #e5ccff;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.window-top-bar {
+    background-color: rgba(18, 3, 36, 0.9) !important;
+    border-bottom: 1px solid #5a1291 !important;
+    padding: 7px 14px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    height: 28px !important;
+    min-height: 28px !important;
+    flex-shrink: 0 !important;
+}
+
+/* Desactivar los círculos de colores de Mac que se colaron desde ventanas.css */
+.window-top-bar .dot-group, 
+.window-top-bar .draggable-header {
+    display: none !important; /* Desaparecen para limpiar el lado izquierdo */
+}
+
+/* Título perfectamente alineado a la izquierda como la imagen guía */
+.window-top-bar .window-title {
+    position: static !important;
+    transform: none !important;
+    color: #00ffff !important;
+    text-shadow: 0 0 8px #00ffff !important;
+    font-size: 11px !important;
+    font-weight: bold !important;
+    text-align: left !important; /* Cambiado a la izquierda */
+    flex-grow: 1 !important;
+}
+
+/* Forzar la cruz de cierre en color morado apagado a la derecha */
+.window-top-bar .window-controls {
+    position: static !important;
+    transform: none !important;
+    color: #5a1291 !important;
+    font-weight: bold !important;
+    font-size: 15px !important;
+    cursor: pointer !important;
+    text-align: right !important;
+}
+
+
+.window-title {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #00ffff;
+    text-shadow: 0 0 8px #00ffff;
+}
+.window-controls { color: #5a1291; font-weight: bold; }
+
+.interface-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 15px !important;
+    padding: 15px 10px !important;
+    width: 100% !important;
+    flex: 1 !important;             /* Toma el alto disponible de forma automática */
+    min-height: 0 !important;       /* Truco clave: evita que los hijos empujen el contenedor */
+    overflow: hidden !important;
+}
+
 
 
 #loading-screen .window-body::-webkit-scrollbar {
@@ -462,33 +518,9 @@
     margin-left: 15px;
 }
 
-.terminal-split-body {
-    padding: 15px;
-    height: calc(100% - 35px);
-    display: flex;
-    gap: 15px;
-    box-sizing: border-box;
-    background-color: rgba(12, 12, 12, 0.75) !important; 
-    backdrop-filter: blur(3px); 
-}
 
 
-.terminal-active-body {
-    flex: 1;
-    height: 100%;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
 
-#boot-text {
-    text-align: left;
-    font-family: 'Consolas', monospace;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #fff;
-}
 
 #terminal-input-zone {
     text-align: left;
@@ -496,35 +528,424 @@
     width: 100%;
 }
 
-.terminal-input-row {
+/* ==========================================================================
+   1. CONFIGURACIÓN GENERAL Y MONITOR
+   ========================================================================== */
+
+/* ==========================================================================
+   2. VISOR DEL MAPA Y EFECTOS DE LUZ
+   ========================================================================== */
+.map-viewport {
+    flex: 2.8 !important;
+    height: 100% !important; 
+    min-height: 0 !important; 
+    border: 1px solid #5a1291;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: none !important; /* ← Cambiado a 'none' para eliminar la sombra */
+    background-image: url('../assets/img/mapa.png') !important; /* ← Quitamos el filtro oscuro para que brille al 100% */
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+.map-image-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+    background-image: url('mapa.png'); 
+    background-size: cover;
+    background-position: center;
+    opacity: 0.85;
+    z-index: 1 !important; 
+}
+
+/* ==========================================================================
+   2. VISOR DEL MAPA (MIRA DE FRANCOTIRADOR ROJA)
+   ========================================================================== */
+.crosshair-overlay {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px; 
+    height: 80px;
+    
+    border: 2px solid rgba(255, 0, 85, 0.85);
+    border-radius: 50%;
+    z-index: 10 !important; 
+    pointer-events: none;
+    box-shadow: 
+        0 0 12px rgba(255, 0, 85, 0.5), 
+        inset 0 0 10px rgba(255, 0, 85, 0.4);
+}
+
+
+/* 🎯 Línea Horizontal de la mira */
+.crosshair-overlay::before {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 110px; /* Tamaño ideal proporcional al círculo */
+    height: 2px;
+    background-color: rgba(255, 0, 85, 0.85);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 6px rgba(255, 0, 85, 0.6);
+}
+
+/* 🎯 Línea Vertical de la mira */
+.crosshair-overlay::after {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 2px;
+    height: 110px; /* Tamaño ideal proporcional al círculo */
+    background-color: rgba(255, 0, 85, 0.85);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 6px rgba(255, 0, 85, 0.6);
+}
+
+
+/* 📡 Configuración y animación de parpadeo de los Nodos del Radar */
+.map-node {
+    position: absolute;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff;
+    z-index: 5;
+    transition: transform 0.2s, background-color 0.3s;
+    animation: radarPulse 2.5s infinite ease-in-out;
+}
+.node-cyan { background-color: #00ffff; box-shadow: 0 0 15px #00ffff; }
+.node-magenta { background-color: #ff007f; box-shadow: 0 0 15px #ff007f; }
+
+/* Nueva clase limpia para cuando un sector se decodifique con éxito */
+.map-node.node-resolved {
+    background-color: #00ff00 !important;
+    box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00 !important;
+    border-color: #fff !important;
+    animation: none; /* Se detiene el parpadeo al solucionarse */
+}
+
+.map-node:hover { transform: scale(1.4); }
+
+@keyframes radarPulse {
+    0% { opacity: 0.5; transform: scale(0.95); }
+    50% { opacity: 1; transform: scale(1.15); }
+    100% { opacity: 0.5; transform: scale(0.95); }
+}
+
+/* Posiciones de los 15 nodos */
+.p-n1 { top: 22%; left: 15%; }
+.p-n2 { top: 15%; left: 45%; }
+.p-n3 { top: 28%; left: 70%; }
+.p-n4 { top: 40%; left: 32%; }
+.p-n5 { top: 48%; left: 58%; }
+.p-n6 { top: 35%; left: 85%; }
+.p-n7 { top: 58%; left: 12%; }
+.p-n8 { top: 62%; left: 40%; }
+.p-n9 { top: 55%; left: 74%; }
+.p-n10 { top: 72%; left: 25%; }
+.p-n11 { top: 78%; left: 52%; }
+.p-n12 { top: 70%; left: 88%; }
+.p-n13 { top: 88%; left: 18%; }
+.p-n14 { top: 85%; left: 68%; }
+.p-n15 { top: 90%; left: 45%; }
+
+/* ==========================================================================
+   3. VENTANAS EMERGENTES Y PANALES
+   ========================================================================== */
+.cyber-popup {
+    display: none;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    background-color: rgba(22, 9, 41, 0.95);
+    border: 1px solid #ff007f;
+    border-radius: 6px;
+    box-shadow: 0 0 25px rgba(255, 0, 127, 0.4), 0 10px 20px #000;
+    z-index: 20;
+}
+.popup-top {
+    background-color: rgba(255, 0, 127, 0.2);
+    color: #ff007f;
+    border-bottom: 1px solid #ff007f;
+    padding: 8px 12px;
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+.popup-main {
+    padding: 15px; display: flex; flex-direction: column; gap: 12px;
+}
+.acertijo-txt { font-size: 0.8rem; color: #fff; }
+.input-row { display: flex; gap: 8px; }
+.input-row input {
+    flex: 1; background-color: #000; border: 1px solid #4a157d;
+    color: #00ffff; padding: 8px; font-family: inherit; font-size: 0.8rem; outline: none;
+}
+.input-row button {
+    background-color: rgba(74, 21, 125, 0.4); color: #00ffff; border: 1px solid #00ffff;
+    padding: 0 15px; font-family: inherit; font-weight: bold; cursor: pointer;
+}
+.control-sidebar {
+    flex: 0.9 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;                   /* Reducido para dar espacio vertical */
+    height: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+}
+.side-widget {
+    background-color: rgba(14, 3, 26, 0.6); 
+    border: 1px solid #3d1266; 
+    border-radius: 6px;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    flex-shrink: 0 !important;
+}
+.side-widget.keypad-display-widget {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+.side-widget:last-child {
+    flex-shrink: 1 !important;
+    flex-grow: 1 !important;   /* Obliga a la barra de desencripción a tomar el fondo libre */
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 45px !important; /* Espacio mínimo asegurado en pantalla */
+}
+
+
+.widget-header {
+    background-color: rgba(27, 5, 51, 0.5); padding: 6px 12px;
+    font-size: 0.7rem; font-weight: bold; color: #a482cc; border-bottom: 1px solid #2d0d4d;
+}
+.widget-body {
+    padding: 10px; font-size: 0.75rem; display: flex; flex-direction: column; gap: 5px;
+}
+.list-scrollable {
+    max-height: 85px !important;           /* Bajado de 120px a 90px */
+    overflow-y: auto !important;
+}
+.list-item { color: #a482cc; display: flex; justify-content: space-between; }
+.badge-lock { color: #ff007f; }
+.badge-ok { color: #00ff00; font-weight: bold; }
+
+/* ==========================================================================
+   4. TECLADO DIGITAL TÁCTIL
+   ========================================================================== */
+.cyber-keypad {
+    background-color: #0b0214 !important;
+    border: 1px solid #771cb8 !important;
+    border-radius: 8px !important;
+    padding: 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;           /* Más separación elegante entre filas */
+    height: 195px !important;   /* Ajuste de altura balanceada */
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8), 0 0 15px rgba(119, 28, 184, 0.2) !important;
+    flex-shrink: 0 !important;
+}
+.keypad-row {
+    display: flex !important;
+    gap: 8px !important;           /* Más separación elegante entre columnas */
+    height: 32px !important;        /* Altura fija ideal */
+    flex-shrink: 0 !important; 
+}
+.key {
+    flex: 1;
+    height: 30px !important;        /* Reducido ligeramente de 42px para dar aire al diseño */
+    background-color: #120324;
+    border: 1.5px solid #8616cf; 
+    border-radius: 6px;
+    color: #dfbfff; 
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    transition: all 0.2s;
+}
+.key:hover {
+    background: #1f073a !important;
+    border-color: #a824ff !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 10px rgba(168, 36, 255, 0.5), inset 0 0 5px rgba(168, 36, 255, 0.3) !important;
+    text-shadow: 0 0 8px #ffffff !important;
+}
+.key:active {
+    background: #090112 !important;
+    border-color: #00ffff !important; /* Destello cian temporal al pulsar */
+    color: #00ffff !important;
+    transform: scale(0.96) !important; /* Simula hundimiento físico del botón */
+    box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.4) !important;
+    text-shadow: 0 0 6px #00ffff !important;
+}
+
+.cmd-key {
+    color: #ff007f; 
+    border-color: #ff007f; 
+    box-shadow: 0 0 8px rgba(255, 0, 127, 0.4);
+}
+.cmd-key:hover {
+    background-color: rgba(255, 0, 127, 0.2);
+    color: #fff;
+    box-shadow: 0 0 15px #ff007f;
+}
+.status-bar-container { 
+    width: 100%; 
+    height: 10px !important; 
+    background-color: #000; 
+    border: 1px solid #3d1266; 
+    border-radius: 3px; 
+    overflow: hidden; }
+.status-bar-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #ff007f, #00ffff); transition: width 0.4s ease; }
+
+/* ==========================================================================
+   5. BARRA INFERIOR DE CÓDIGO
+   ========================================================================== */
+.footer-crypto-panel {
+    border-top: 1px solid #2d0d4d;
+    padding: 10px 20px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: #05010a;
+    flex-shrink: 0 !important;      /* Se queda clavado abajo sin flotar */
+}
+.panel-label {
+    font-size: 0.75rem;
+    color: #a482cc;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.hex-display-container {
+    width: 100%;
+    border: 2px solid #00ffff; 
+    padding: 12px 20px;
+    border-radius: 8px;
+    background-color: rgba(0, 255, 255, 0.02);
+    box-shadow: 0 0 18px rgba(0, 255, 255, 0.4), inset 0 0 10px rgba(0, 255, 255, 0.1);
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 8px;
-    width: 100%;
-    text-align: left;
+}
+.hex-display {
+    font-size: 2.1rem;
+    color: #ff007f; 
+    font-weight: bold;
+    text-shadow: 0 0 10px #ff007f, 0 0 20px rgba(255, 0, 127, 0.5);
+    letter-spacing: 6px;
+}
+.locked-btn {
+    width: 100%; background-color: #160526; color: #43116e; padding: 12px;
+    font-family: inherit; font-weight: bold; border: 1px solid #2e0c4d; border-radius: 4px; cursor: not-allowed; margin-top: 5px;
+    transition: all 0.3s;
+}
+.locked-btn.unlocked {
+    background-color: #00ff00; color: #000; box-shadow: 0 0 15px #00ff00; border-color: #fff; cursor: pointer;
 }
 
-.terminal-input-row input {
-    background: transparent;
-    border: none;
-    color: #00ff00;
-    font-family: 'Consolas', monospace;
-    font-size: 14px;
-    outline: none;
-    flex-grow: 1;
-    text-align: left;
+/* ==========================================================================
+   6. CAPA DE ALERTAS
+   ========================================================================== */
+/* 🚨 Capa para el destello de error (Rojo) */
+.error-overlay { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh; 
+    /* 🔥 Subimos la opacidad base del color para que sea muy vivo y sature bien */
+    background-color: rgba(255, 0, 0, 0.45); 
+    z-index: 99999999 !important; 
+    pointer-events: none; 
+    opacity: 0; 
+    transition: opacity 0.1s ease; 
 }
 
-#v2-bitacora-respuestas {
-    width: 220px;
-    height: 100%;
-    border-left: 1px dashed #333;
-    padding-left: 15px;
-    overflow-y: auto;
-    font-family: 'Consolas', monospace;
-    font-size: 11px;
-    color: #888;
-    text-align: left;
-    box-sizing: border-box;
+/* 🌟 Ciclo completo de 1.1s (Dará 2 parpadeos perfectos y profundos en 2.2s) */
+.error-overlay.active { 
+    opacity: 1; 
+    animation: parpadeoIntensoUnificado 1.1s infinite ease-in-out; 
+}
+
+/* 🟢 Capa para el destello de éxito total (Verde) */
+.success-overlay { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh; 
+    /* 🔥 Verde neón intenso y bien saturado */
+    background-color: rgba(0, 255, 60, 0.45); 
+    z-index: 99999999 !important; 
+    pointer-events: none; 
+    opacity: 0; 
+    transition: opacity 0.1s ease; 
+}
+
+/* 🌟 Sincronizada exactamente igual que la roja */
+.success-overlay.active { 
+    opacity: 1; 
+    animation: parpadeoIntensoUnificado 1.1s infinite ease-in-out; 
+}
+
+/* 🔄 Nueva lógica de animación: se apaga por completo (0) y brilla al máximo (1) */
+@keyframes parpadeoIntensoUnificado {
+    0%, 100% {
+        opacity: 0; /* Totalmente oscuro / transparente */
+    }
+    50% {
+        opacity: 1; /* Brillo máximo en el medio del ciclo */
+    }
+}
+
+@keyframes errorPulseLight {
+    0% {
+        background-color: rgba(255, 0, 0, 0.15);
+        box-shadow: inset 0 0 100px rgba(255, 0, 0, 0.4);
+    }
+    100% {
+        background-color: rgba(255, 0, 0, 0.35);
+        box-shadow: inset 0 0 200px rgba(255, 0, 0, 0.7);
+    }
+}
+
+/* ==========================================================================
+   7. PANTALLA DEL TECLADO Y DESTELLO DE ÉXITO
+   ========================================================================== */
+/* Monitor de texto del teclado */
+.keypad-display-widget {
+    margin-top: -5px;
+    margin-bottom: -5px;
+}
+.terminal-display {
+    background-color: #030008;
+    border: 1px solid #8616cf;
+    padding: 8px;
+    border-radius: 4px;
+    color: #00ff00; /* Verde fósforo clásico de terminal */
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 0 6px #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+@keyframes successPulseLight {
+    0% {
+        background-color: rgba(0, 255, 0, 0.15);
+        box-shadow: inset 0 0 100px rgba(0, 255, 0, 0.4);
+    }
+    100% {
+        background-color: rgba(0, 255, 0, 0.4);
+        box-shadow: inset 0 0 250px rgba(0, 255, 0, 0.8);
+    }
 }
