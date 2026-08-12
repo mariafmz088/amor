@@ -398,86 +398,270 @@ body {
     border-radius: 4px;
 }
 
-/* 📺 1. El fondo de la pantalla de carga */
+/* Fondo general inmersivo con tu propia imagen personalizada */
 #joke-loading-screen {
-    background-color: #07050f !important;
-    display: flex !important;
+    position: fixed !important;
+    top: 0; left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    
+    /* 🌟 CORREGIDO: Bajamos la opacidad a 0.4 y 0.5 para que la imagen se vea más nítida */
+    background: linear-gradient(rgba(10, 5, 20, 0.7), rgba(5, 3, 10, 0.8)), 
+                url('../assets/img/fondocarga.png') no-repeat center center !important;
+    background-size: cover !important;
+    
+    backdrop-filter: blur(6px) !important; /* Bajamos un poco el blur para ver mejor tu fondo */
+    -webkit-backdrop-filter: blur(6px) !important;
+    z-index: 99999999 !important;
+    display: none; 
     justify-content: center;
     align-items: center;
 }
 
-/* 🪟 2. La cajita gris ahora es cristal morado translúcido */
+/* Regla para activar la visualización con JS */
+#joke-loading-screen:not(.hidden) {
+    display: flex !important;
+}
+
+
+/* Contenedor principal con la esquina superior izquierda biselada / cortada */
+/* Caja de la terminal con bordes cargados de Neón */
+/* Caja de la terminal con el mismo morado neón del mapa */
 #joke-loading-screen .terminal-window.mini-box {
-    position: fixed !important;
+    position: absolute !important;
     top: 50% !important;
     left: 50% !important;
-    transform: translate(-50%, -50%) !important; /* Centrado matemático perfecto */
-    width: 480px !important;
-    max-width: 92%;
-    background: rgba(22, 14, 36, 0.7) !important; /* Cristal morado translúcido */
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border: 1px solid rgba(255, 121, 198, 0.3) !important;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 121, 198, 0.15) !important;
+    transform: translate(-50%, -50%) !important;
+    width: 620px !important;
+    max-width: 95%;
+    background: rgba(20, 16, 33, 0.85) !important;
+    
+    /* 🌟 CORREGIDO: Usamos el morado exacto de tu mapa (#5a1291) */
+    border: 2px solid #5a1291 !important; 
     border-radius: 12px !important;
-    padding: 25px 30px !important;
+    clip-path: polygon(30px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 30px);
+    
+    /* 🌟 CORREGIDO: Resplandor exterior e interior usando la misma paleta del mapa */
+    box-shadow: 0 0 30px rgba(90, 18, 145, 0.8), 
+                inset 0 0 15px rgba(90, 18, 145, 0.4) !important;
+                
+    padding: 35px !important;
     box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 22px;
 }
 
 /* 📊 3. El contenedor de la barra de progreso */
 #joke-loading-screen .progress-container {
-    background: #120c1f !important;
-    border: 1px solid rgba(255, 121, 198, 0.2) !important;
-    border-radius: 10px !important;
-    height: 14px !important;
+    background: #0f0c18 !important;
+    border: 1px solid #241d33 !important;
+    border-radius: 20px !important;
+    height: 10px !important;
     overflow: hidden !important;
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.7) !important;
-    margin-bottom: 15px !important;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+    margin-bottom: 5px !important;
 }
-
 /* 🔥 4. LA BARRA INTERNA: ¡Degradado morado y rosa neón! */
 #progress-bar {
-    background: linear-gradient(90deg, #9b51e0, #ff79c6) !important;
+    background: #ff007f !important;
     height: 100% !important;
-    border-radius: 10px !important;
-    box-shadow: 0 0 10px #ff79c6, 0 0 4px #9b51e0 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 0 10px #ff007f !important;
     transition: width 0.3s ease !important;
 }
-
 /* 💬 5. Los textos de "Loading Systems..." y los chistes */
 #joke-loading-screen .spinner-love {
-    color: #00ff66 !important;
+    /* 🌟 CORREGIDO: Tono turquesa brillante (#00f0ff) con su respectiva sombra de luz */
+    color: #00f0ff !important;
+    font-size: 24px !important;
     font-weight: bold !important;
-    text-shadow: 0 0 8px rgba(0, 255, 102, 0.5) !important;
+    letter-spacing: 1.5px !important;
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.8) !important;
+    margin-bottom: 0 !important;
+    align-self: center;
 }
+
+/* Caja de chistes y mensajes centrada en rosa fucsia */
 #joke-loading-screen .joke-box {
-    background: rgba(5, 3, 10, 0.5) !important;
-    border: 1px dashed rgba(255, 121, 198, 0.25) !important;
-    color: #f8f8f2 !important;
-}
-#countdown-text {
-    color: #ffbd2e !important;
+    width: 100% !important;
+    background: rgba(8, 5, 15, 0.6) !important;
+    border: 1px solid #2d253f !important;
+    border-radius: 8px !important;
+    color: #ff5bf8 !important;
+    font-size: 16px !important;
     font-weight: bold !important;
+    text-align: center !important;
+    line-height: 1.6 !important;
+    padding: 22px !important;
+    margin: 0 !important;
+    text-shadow: 0 0 8px rgba(255, 91, 248, 0.4) !important;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Distribución horizontal para la barra y el anillo circular */
+.loading-status-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    gap: 25px;
+}
+
+/* WIDGET PROGRESO CIRCULAR (CSS PURO) */
+
+/* ==========================================================================
+   NUEVO INDICADOR DE MULTI-ANILLOS CONCÉNTRICOS CYBERPUNK NEÓN
+   ========================================================================== */
+
+.circular-progress-widget.multi-rings {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    position: relative;
+}
+
+/* Base general para todos los anillos */
+.ring {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* 💜 Anillo Exterior (Morado Neón del Mapa) */
+.ring-outer {
+    width: 110px;
+    height: 110px;
+    /* Arco morado brillante con apertura abajo a la derecha */
+    background: conic-gradient(#5a1291 0% 75%, transparent 75% 100%);
+    padding: 8px; /* Espaciado generoso para separar los anillos */
+    filter: drop-shadow(0 0 8px rgba(90, 18, 145, 0.8));
+}
+
+/* 💗 Anillo Intermedio (Rosa Neón / Fucsia) */
+.ring-middle {
+    width: 100%;
+    height: 100%;
+    /* Arco rosa brillante con apertura diferente */
+    background: conic-gradient(#ff007f 0% 65%, transparent 65% 100%);
+    padding: 8px; /* Espaciado entre el rosa y el turquesa */
+    filter: drop-shadow(0 0 8px rgba(255, 0, 127, 0.8));
+}
+
+/* 💎 Anillo Interior (Turquesa Neón / Cian) */
+.ring-inner {
+    width: 100%;
+    height: 100%;
+    /* Arco turquesa con apertura */
+    background: conic-gradient(#00f0ff 0% 55%, transparent 55% 100%);
+    padding: 8px;
+    filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.8));
+}
+
+/* Centro oscuro para ocultar el degradado interno y dejar solo las líneas */
+.ring-inner::before {
+    content: "";
+    position: absolute;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    background: #141021; /* El color de fondo exacto de tu ventana */
+    border-radius: 50%;
+    z-index: 1;
+    transform: scale(0.82); /* Encoge el círculo interno para crear el grosor de línea perfecto */
+}
+
+/* Texto del porcentaje en Turquesa Neón en el centro */
+/* Texto del porcentaje en Turquesa Neón (Fijo, grande y perfectamente centrado) */
+#circle-percent-text {
+    color: #00f0ff;
+    font-size: 18px !important; /* Aumentamos el tamaño para que resalte */
+    font-weight: bold !important;
+    font-family: 'Consolas', monospace !important;
+    text-shadow: 0 0 10px #00f0ff, 0 0 5px rgba(0, 240, 255, 0.8);
+    
+    /* 🌟 CORREGIDO: Lo sacamos del flujo del div que gira usando position fixed/absolute */
+    position: absolute !important;
+    z-index: 9999 !important;
+    
+    /* 🌟 CORREGIDO: Eliminamos la animación de giro/antiGiro para que se quede 100% quieto */
+    animation: none !important; 
+    transform: none !important;
+}
+
+
+/* Animaciones de rotación independiente */
+.ring-outer { animation: spinRing 4s linear infinite; }
+.ring-middle { animation: spinRing 2.5s linear infinite reverse; } /* Gira al revés */
+.ring-inner { animation: spinRing 1.8s linear infinite; }
+
+/* Evita que el texto central dé vueltas con los anillos */
+#circle-percent-text { animation: antiSpin 1.8s linear infinite reverse; }
+
+@keyframes spinRing {
+    100% { transform: rotate(360deg); }
+}
+@keyframes antiSpin {
+    100% { transform: rotate(360deg); }
+}
+
+
+#circle-percent-text {
+    color: #ff5bf8;
+    font-size: 13px;
+    font-weight: bold;
+    font-family: monospace;
+    text-shadow: 0 0 5px #ff5bf8;
+    animation: staticText 8s linear infinite reverse; /* Evita que el texto gire */
+}
+
+.loading-controls-column {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+}
+
+#countdown-text {
+    color: #ff5bf8 !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+    letter-spacing: 0.5px !important;
+    text-shadow: 0 0 5px rgba(255, 91, 248, 0.2);
 }
 
 /* ⏩ 6. EL BOTÓN QUE ABRE EL VIEJO ABURRIDO (Estilizado) */
 #btn-skip-loading {
     background: transparent !important;
-    color: rgba(255, 255, 255, 0.4) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #8c7fa6 !important;
+    border: 1px solid #362e4c !important;
     font-family: 'Consolas', monospace !important;
-    font-size: 11px !important;
-    padding: 8px 16px !important;
+    font-size: 12px !important;
+    padding: 8px 18px !important;
     border-radius: 6px !important;
     cursor: pointer !important;
+    align-self: flex-start !important;
     transition: all 0.2s ease !important;
 }
 #btn-skip-loading:hover {
-    background: rgba(255, 121, 198, 0.1) !important;
-    color: #ff79c6 !important;
-    border-color: #ff79c6 !important;
+    background: rgba(255, 0, 127, 0.08) !important;
+    color: #ff007f !important;
+    border-color: #ff007f !important;
+    box-shadow: 0 0 10px rgba(255, 0, 127, 0.2) !important;
 }
 
+@keyframes rotateCyber {
+    100% { transform: rotate(360deg); }
+}
+@keyframes staticText {
+    100% { transform: rotate(360deg); }
+}
 
 
 /* ==========================================================================

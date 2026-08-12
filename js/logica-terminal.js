@@ -114,14 +114,14 @@ function activarPantallaCompleta() {
 
 
 function startJokeLoading() {
-
     activarPantallaCompleta();
     const jokeDisplay = document.getElementById("joke-display");
     const progressBar = document.getElementById("progress-bar");
-    const countdownText = document.getElementById("countdown-text");
-    if (!jokeDisplay || !progressBar || !countdownText) return;
+    const circlePercent = document.getElementById("circle-percent-text"); 
+    
+    if (!jokeDisplay || !progressBar) return;
 
-    // 🌟 REPARADO: Apagamos estrictamente la música bonita de fondo antes de prender la de carga
+    // Control de música nativo
     const musicaNormal = document.getElementById("musica-cyber");
     if (musicaNormal) { musicaNormal.pause(); musicaNormal.currentTime = 0; }
 
@@ -132,22 +132,27 @@ function startJokeLoading() {
         musicaCarga.play().catch(e => {});
     }
 
-    // Mostrar el primer chiste de golpe al arrancar
+    // Primer chiste inmediato
     jokeDisplay.innerText = jokeList[Math.floor(Math.random() * jokeList.length)];
     
-    // Cambiar de chiste cada 1.5 segundos
+    // Rotación de frases cada 2.5 segundos
     jokeInterval = setInterval(() => { 
         jokeDisplay.innerText = jokeList[Math.floor(Math.random() * jokeList.length)]; 
     }, 2550);
 
-    // Intervalo de la barra de progreso
+    // 🌟 CALIBRADO A 45 SEGUNDOS EXACTOS:
+    // El intervalo corre cada 100ms (10 veces por segundo). 45 segundos = 450 iteraciones.
+    // 100% / 450 = 0.2222 por cada ciclo.
+    currentProgress = 0; 
     progressInterval = setInterval(() => {
-        currentProgress += 0.20; 
+        currentProgress += 0.2222; 
         if (currentProgress > 100) currentProgress = 100;
         
+        // Renderizado visual en barra y anillo neón
         progressBar.style.width = `${currentProgress}%`;
-        timeRemaining = Math.max(0, 50 - Math.floor((currentProgress / 100) * 55));
-        countdownText.innerText = `Tiempo restante de indexación: ${timeRemaining}s`;
+        if (circlePercent) {
+            circlePercent.innerText = `${Math.floor(currentProgress)}%`;
+        }
         
         if (currentProgress >= 100) { 
             clearLoadingIntervals(); 
@@ -155,6 +160,8 @@ function startJokeLoading() {
         }
     }, 100);
 }
+
+
 function clearLoadingIntervals() { 
     clearInterval(jokeInterval); 
     clearInterval(progressInterval); 

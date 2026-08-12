@@ -139,18 +139,40 @@
     </div>
 
 
-<div id="joke-loading-screen" class="screen hidden">
-    <div class="terminal-window mini-box text-center">
-        <div class="spinner-love"> Loading Systems...</div>
-        <div id="joke-display" class="joke-box">Cargando datillos de amor...</div>
-        <div class="progress-container">
-            <div id="progress-bar" class="progress-bar"></div>
-        </div>
-        <div id="countdown-text"></div>
-        <!-- REPARADO: Ahora sí tiene la acción para limpiar tiempos e ir al escritorio -->
-        <button id="btn-skip-loading" onclick="openWindow('win-viejito');">Saltar carga e ir directo </button>
+    <!-- Agrega la clase 'hidden' para que empiece completamente invisible -->
+    <div id="joke-loading-screen" class="hidden"> 
+        <div class="terminal-window mini-box"> 
+            <div class="spinner-love">Loading Systems...</div> 
+            
+            <!-- ID 'joke-display' para que tu JS inyecte las frases --> 
+            <div class="joke-box" id="joke-display"> 
+                Iniciando componentes del entorno... 
+            </div> 
+            
+            <div class="loading-status-row"> 
+                <div class="circular-progress-widget multi-rings"> 
+                    <!-- Los tres anillos concéntricos que van a girar de fondo -->
+                    <div class="ring ring-outer"> 
+                        <div class="ring ring-middle"> 
+                            <div class="ring ring-inner"></div> 
+                        </div> 
+                    </div> 
+                    <!-- 🌟 CORREGIDO: Al sacarlo de los divs ".ring", el número se queda estático en el centro -->
+                    <span id="circle-percent-text">0%</span> 
+                </div> 
+                
+                <div class="loading-controls-column"> 
+                    <div class="progress-container"> 
+                        <div id="progress-bar" style="width: 0%;"></div> 
+                    </div> 
+                    <!-- Dispara la alerta de advertencia antes de saltar --> 
+                    <button id="btn-skip-loading" onclick="openWindow('win-viejito')">Saltar carga e ir directo</button> 
+                </div> 
+            </div> 
+        </div> 
     </div>
-</div>
+
+
 
 <!-- ==========================================
 2. VENTANAS EMERGENTES Y POPUPS
